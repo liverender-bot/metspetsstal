@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МетСпецСталь — Единая платформа поставок редких сталей</title>
+    <meta name="description" content="Поставка редких марок стали, легированных и специальных сплавов. Единая платформа управления закупками металлопроката.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: { 50: '#eef2f7', 100: '#d9e2ed', 200: '#b3c6db', 300: '#8daac9', 400: '#678eb7', 500: '#1e3a5f', 600: '#1a3050', 700: '#142640', 800: '#0e1c30', 900: '#081220' },
+                        ember: { 50: '#fff7ed', 100: '#ffedd5', 200: '#fed7aa', 300: '#fdba74', 400: '#fb923c', 500: '#d97706', 600: '#b45309', 700: '#92400e' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; color: #1e293b; background: #ffffff; }
+        section[id] { scroll-margin-top: 80px; }
+
+        /* ===== NAVIGATION ===== */
+        .nav-scrolled { background: rgba(255,255,255,0.95) !important; backdrop-filter: blur(14px); box-shadow: 0 1px 0 rgba(30,58,95,0.08); }
+        .nav-link { color: #475569; font-weight: 500; font-size: 0.85rem; transition: color 0.3s; position: relative; padding: 0.25rem 0; }
+        .nav-link:hover { color: #1e3a5f; }
+        .nav-link-drop { position: relative; cursor: pointer; }
+        .nav-link-drop:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-menu {
+            position: absolute; top: 100%; left: 0; margin-top: 0.5rem;
+            background: white; border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.02);
+            padding: 0.5rem; min-width: 200px;
+            opacity: 0; visibility: hidden; transform: translateY(-4px);
+            transition: all 0.2s; z-index: 100;
+        }
+        .dropdown-menu a { display: block; padding: 0.625rem 1rem; border-radius: 8px; color: #475569; font-size: 0.8rem; text-decoration: none; transition: all 0.15s; }
+        .dropdown-menu a:hover { background: #f1f5f9; color: #1e3a5f; }
+
+        /* ===== HERO DASHBOARD ===== */
+        .hero-dash {
+            background: linear-gradient(135deg, #f8fafc 0%, #eef2f7 50%, #f1f5f9 100%);
+            position: relative; overflow: hidden;
+        }
+        .hero-dash::before {
+            content: ''; position: absolute; top: 0; right: 0; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(30,58,95,0.03) 0%, transparent 70%);
+        }
+        /* Live dashboard widget */
+        .dash-widget {
+            background: white; border-radius: 16px; padding: 1.25rem;
+            border: 1px solid #f1f5f9; box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            transition: all 0.3s;
+        }
+        .dash-widget:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.05); border-color: #e2e8f0; }
+        .dash-widget .label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: #94a3b8; }
+        .dash-widget .value { font-size: 1.5rem; font-weight: 700; color: #0f172a; line-height: 1.2; }
+        .dash-widget .unit { font-size: 0.8rem; color: #64748b; font-weight: 400; }
+        .dash-badge { display: inline-flex; align-items: center; gap: 0.25rem; font-size: 0.65rem; font-weight: 600; padding: 0.2rem 0.5rem; border-radius: 4px; }
+
+        /* Slide indicator */
+        .slide-indicator { display: flex; align-items: center; gap: 0.75rem; font-size: 0.8rem; font-weight: 500; color: #94a3b8; letter-spacing: 0.05em; }
+        .slide-indicator .active { color: #1e3a5f; font-weight: 700; }
+        .slide-indicator .line { width: 40px; height: 2px; background: #e2e8f0; position: relative; overflow: hidden; }
+        .slide-indicator .line::after { content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 50%; background: #1e3a5f; animation: slideProgress 3s ease-in-out infinite; }
+        @keyframes slideProgress { 0% { width: 0; } 50% { width: 100%; } 100% { width: 0; } }
+
+        /* ===== SECTIONS ===== */
+        .section-title { font-size: 2.25rem; font-weight: 800; color: #0f172a; line-height: 1.2; letter-spacing: -0.02em; }
+        .section-subtitle { font-size: 1.05rem; color: #64748b; max-width: 560px; line-height: 1.7; }
+        .sec-bg-alt { background: #f8fafc; }
+
+        /* ===== FEATURE CARDS ===== */
+        .feature-card {
+            background: white; border: 1px solid #f1f5f9; border-radius: 16px; padding: 1.75rem;
+            transition: all 0.35s; position: relative; overflow: hidden;
+        }
+        .feature-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, #1e3a5f, #d97706);
+            transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
+        }
+        .feature-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.04); border-color: #e2e8f0; }
+        .feature-card:hover::before { transform: scaleX(1); }
+        .feature-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: white; }
+
+        /* ===== STATS ===== */
+        .stat-num { font-size: 3.5rem; font-weight: 800; color: #1e3a5f; line-height: 1; letter-spacing: -0.03em; }
+        .stat-label { font-size: 0.85rem; color: #64748b; font-weight: 500; margin-top: 0.5rem; }
+
+        /* ===== PARTNER CAROUSEL ===== */
+        .partner-track { display: flex; gap: 4rem; animation: scrollPartners 25s linear infinite; width: max-content; }
+        .partner-wrap:hover .partner-track { animation-play-state: paused; }
+        @keyframes scrollPartners { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* ===== CASE STUDY ===== */
+        .case-card { background: #1e3a5f; border-radius: 20px; padding: 3rem; color: white; position: relative; overflow: hidden; }
+        .case-card::before { content: ''; position: absolute; top: -50%; right: -20%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%); }
+
+        /* ===== FORM ===== */
+        .form-input { width: 100%; padding: 0.8rem 1.2rem; border: 1.5px solid #e2e8f0; border-radius: 10px; font-family: inherit; font-size: 0.9rem; transition: all 0.3s; background: #f8fafc; }
+        .form-input:focus { outline: none; border-color: #1e3a5f; box-shadow: 0 0 0 4px rgba(30,58,95,0.08); background: white; }
+        .form-input::placeholder { color: #94a3b8; }
+        .form-label { display: block; font-size: 0.8rem; font-weight: 600; color: #475569; margin-bottom: 0.35rem; }
+
+        /* ===== CTA ===== */
+        .btn-primary { background: #1e3a5f; color: white; padding: 0.8rem 2rem; border-radius: 10px; font-weight: 600; font-size: 0.9rem; transition: all 0.3s; display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+        .btn-primary:hover { background: #2d5a8e; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(30,58,95,0.2); }
+        .btn-outline { border: 1.5px solid #e2e8f0; color: #475569; padding: 0.8rem 2rem; border-radius: 10px; font-weight: 600; font-size: 0.9rem; transition: all 0.3s; display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+        .btn-outline:hover { border-color: #1e3a5f; color: #1e3a5f; background: #f8fafc; }
+
+        /* ===== FOOTER ===== */
+        .footer-link { color: rgba(255,255,255,0.5); font-size: 0.85rem; text-decoration: none; transition: color 0.3s; display: block; padding: 0.2rem 0; }
+        .footer-link:hover { color: #fb923c; }
+
+        @media (max-width: 768px) {
+            .section-title { font-size: 1.6rem; }
+            .stat-num { font-size: 2.5rem; }
+            .case-card { padding: 1.5rem; }
+            .dash-widget .value { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <!-- Logo -->
+                <a href="#hero" class="flex items-center gap-2.5 font-bold text-lg no-underline text-brand-500">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <rect x="1.5" y="1.5" width="29" height="29" rx="7" stroke="#1e3a5f" stroke-width="2.5" fill="none"/>
+                        <path d="M9 23V13l7-5 7 5v10H9z" stroke="#1e3a5f" stroke-width="1.8" fill="none" stroke-linejoin="round"/>
+                        <path d="M13 23V16.5h6V23" stroke="#1e3a5f" stroke-width="1.8" fill="none" stroke-linejoin="round"/>
+                    </svg>
+                    <span>МетСпецСталь</span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden lg:flex items-center gap-7">
+                    <div class="nav-link-drop">
+                        <span class="nav-link inline-flex items-center gap-1">
+                            Продукция <i class="fas fa-chevron-down" style="font-size:0.5rem;"></i>
+                        </span>
+                        <div class="dropdown-menu">
+                            <a href="#products">Листовая спецсталь</a>
+                            <a href="#products">Легированные стали</a>
+                            <a href="#products">Нержавеющие сплавы</a>
+                            <a href="#products">Редкие марки</a>
+                        </div>
+                    </div>
+                    <a href="#advantages" class="nav-link">Преимущества</a>
+                    <a href="#cases" class="nav-link">Кейсы</a>
+                    <a href="#contacts" class="nav-link">Контакты</a>
+                    <div class="flex items-center gap-3 ml-4">
+                        <a href="#contacts" class="btn-primary text-sm px-5 py-2.5">
+                            <i class="fas fa-paper-plane"></i> Запросить цену
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mobile -->
+                <a href="#contacts" class="lg:hidden btn-primary text-sm px-4 py-2.5">
+                    <i class="fas fa-paper-plane mr-1"></i> Связь
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO ========== -->
+    <section id="hero" class="hero-dash min-h-screen flex items-center pt-20 lg:pt-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 w-full">
+            <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+                <!-- Left -->
+                <div data-aos="fade-right" data-aos-duration="800">
+                    <div class="slide-indicator mb-8">
+                        <span class="active">01</span>
+                        <span class="line"></span>
+                        <span>04</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-5" style="color:#0f172a;">
+                        Единая платформа<br/>
+                        <span style="color:#1e3a5f;">поставок редких сталей</span>
+                    </h1>
+                    <p class="text-lg sm:text-xl text-steel-500 mb-8 leading-relaxed max-w-xl" style="color:#64748b;">
+                        Управляйте закупками металлопроката в реальном времени: отслеживайте партии, 
+                        контролируйте качество и оплачивайте онлайн. Присоединяйтесь к промышленной революции.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#contacts" class="btn-primary text-base px-7 py-3.5">
+                            <i class="fas fa-paper-plane"></i> Получить доступ
+                        </a>
+                        <a href="#features" class="btn-outline text-base px-7 py-3.5">
+                            Как это работает
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Dashboard Widgets -->
+                <div data-aos="fade-left" data-aos-duration="800" data-aos-delay="100">
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="dash-widget" data-aos="fade-up" data-aos-delay="100">
+                            <div class="label">Температура плавки</div>
+                            <div class="value">1,580 <span class="unit">°C</span></div>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="dash-badge" style="background:#fee2e2;color:#dc2626;">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span> Online
+                                </span>
+                                <span class="text-xs" style="color:#94a3b8;">Стабильно</span>
+                            </div>
+                        </div>
+                        <div class="dash-widget" data-aos="fade-up" data-aos-delay="200">
+                            <div class="label">Вес партии</div>
+                            <div class="value">24.6 <span class="unit">т</span></div>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="dash-badge" style="background:#dcfce7;color:#16a34a;">
+                                    <i class="fas fa-check-circle" style="font-size:0.5rem;"></i> В пути
+                                </span>
+                                <span class="text-xs" style="color:#94a3b8;">Заказ #4812</span>
+                            </div>
+                        </div>
+                        <div class="dash-widget" data-aos="fade-up" data-aos-delay="300">
+                            <div class="label">Марка стали</div>
+                            <div class="value" style="font-size:1.1rem;">12Х18Н10Т</div>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="dash-badge" style="background:#dbeafe;color:#2563eb;">
+                                    <i class="fas fa-flask" style="font-size:0.5rem;"></i> Легированная
+                                </span>
+                                <span class="text-xs" style="color:#94a3b8;">Сертификат ✓</span>
+                            </div>
+                        </div>
+                        <div class="dash-widget" data-aos="fade-up" data-aos-delay="400">
+                            <div class="label">Доставка</div>
+                            <div class="value">2.3 <span class="unit">дня</span></div>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="dash-badge" style="background:#fef3c7;color:#d97706;">
+                                    <i class="fas fa-truck" style="font-size:0.5rem;"></i> Оптимизирован
+                                </span>
+                                <span class="text-xs" style="color:#94a3b8;">-12% к сроку</span>
+                            </div>
+                        </div>
+                        <div class="dash-widget col-span-2" data-aos="fade-up" data-aos-delay="500" style="display:flex;align-items:center;gap:1rem;">
+                            <div class="flex-1">
+                                <div class="label">Загрузка производства</div>
+                                <div class="flex items-center gap-3 mt-1">
+                                    <div class="value" style="font-size:1.8rem;">78<span class="unit">%</span></div>
+                                    <div style="flex:1;height:6px;background:#f1f5f9;border-radius:3px;overflow:hidden;">
+                                        <div style="width:78%;height:100%;background:linear-gradient(90deg,#1e3a5f,#d97706);border-radius:3px;transition:width 1s;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="text-align:right;">
+                                <div class="label">Статус</div>
+                                <span class="dash-badge" style="background:#dcfce7;color:#16a34a;margin-top:0.25rem;">
+                                    Valid
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FEATURES / Платформа ========== -->
+    <section id="features" class="py-20 lg:py-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-title mb-4">Единая платформа управления металлопрокатом</h2>
+                <p class="section-subtitle mx-auto">
+                    Полный контроль над закупками, качеством и логистикой специальных сталей в одном окне
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Feature 1 -->
+                <div class="feature-card" data-aos="fade-up">
+                    <div class="feature-icon mb-4" style="background:linear-gradient(135deg,#1e3a5f,#2d5a8e);">
+                        <i class="fas fa-search-location"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2" style="color:#0f172a;">Отслеживание партий в реальном времени</h3>
+                    <p class="text-sm leading-relaxed mb-3" style="color:#64748b;">
+                        GPS-мониторинг каждой партии от склада до объекта. 
+                        История перемещений, фотофиксация, ETA с точностью до часа.
+                    </p>
+                    <a href="#contacts" class="inline-flex items-center gap-1 text-sm font-semibold" style="color:#1e3a5f;">
+                        Подробнее <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i>
+                    </a>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon mb-4" style="background:linear-gradient(135deg,#d97706,#ea580c);">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2" style="color:#0f172a;">Контроль качества и сертификация</h3>
+                    <p class="text-sm leading-relaxed mb-3" style="color:#64748b;">
+                        Цифровые паспорта качества, сертификаты соответствия, 
+                        протоколы лабораторных испытаний — всё в личном кабинете.
+                    </p>
+                    <a href="#contacts" class="inline-flex items-center gap-1 text-sm font-semibold" style="color:#1e3a5f;">
+                        Подробнее <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i>
+                    </a>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon mb-4" style="background:linear-gradient(135deg,#1e3a5f,#2d5a8e);">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2" style="color:#0f172a;">Мгновенные онлайн-платежи</h3>
+                    <p class="text-sm leading-relaxed mb-3" style="color:#64748b;">
+                        Юридически значимый документооборот, онлайн-оплата картами 
+                        и по счёту. Цифровой кошелёк для постоянных клиентов.
+                    </p>
+                    <a href="#contacts" class="inline-flex items-center gap-1 text-sm font-semibold" style="color:#1e3a5f;">
+                        Подробнее <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i>
+                    </a>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon mb-4" style="background:linear-gradient(135deg,#d97706,#ea580c);">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2" style="color:#0f172a;">Маркетплейс поставщиков</h3>
+                    <p class="text-sm leading-relaxed mb-3" style="color:#64748b;">
+                        50+ проверенных заводов-партнёров. Автоматический подбор 
+                        лучшей цены и срока под вашу марку и объём.
+                    </p>
+                    <a href="#contacts" class="inline-flex items-center gap-1 text-sm font-semibold" style="color:#1e3a5f;">
+                        Подробнее <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i>
+                    </a>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon mb-4" style="background:linear-gradient(135deg,#1e3a5f,#2d5a8e);">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2" style="color:#0f172a;">Аналитика и KPI</h3>
+                    <p class="text-sm leading-relaxed mb-3" style="color:#64748b;">
+                        Дашборды с ключевыми метриками: средний чек, время поставки, 
+                        рейтинг поставщиков, история цен по маркам стали.
+                    </p>
+                    <a href="#contacts" class="inline-flex items-center gap-1 text-sm font-semibold" style="color:#1e3a5f;">
+                        Подробнее <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i>
+                    </a>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="feature-icon mb-4" style="background:linear-gradient(135deg,#d97706,#ea580c);">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2" style="color:#0f172a;">API-интеграция с 1С и ERP</h3>
+                    <p class="text-sm leading-relaxed mb-3" style="color:#64748b;">
+                        Прямая интеграция с вашими учётными системами. Автоматический 
+                        обмен заявками, счетами и актами без участия менеджера.
+                    </p>
+                    <a href="#contacts" class="inline-flex items-center gap-1 text-sm font-semibold" style="color:#1e3a5f;">
+                        Подробнее <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== STATISTICS ========== -->
+    <section class="py-20 sec-bg-alt">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 text-center" data-aos="fade-up">
+                <div>
+                    <div class="stat-num">16k+</div>
+                    <div class="stat-label">Пользователей платформы</div>
+                </div>
+                <div>
+                    <div class="stat-num">800+</div>
+                    <div class="stat-label">Заводов-поставщиков</div>
+                </div>
+                <div>
+                    <div class="stat-num">1.1m</div>
+                    <div class="stat-label">Тонн отгружено</div>
+                </div>
+                <div>
+                    <div class="stat-num">50+</div>
+                    <div class="stat-label">Редких марок стали</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PARTNER LOGOS ========== -->
+    <section class="py-16 overflow-hidden border-y border-steel-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+            <p class="text-center text-sm font-semibold uppercase tracking-widest" style="color:#94a3b8;">Ведущие промышленные партнёры</p>
+        </div>
+        <div class="partner-wrap">
+            <div class="partner-track">
+                <!-- Group 1 -->
+                <div class="flex items-center gap-12 text-sm font-bold uppercase tracking-wider" style="color:#94a3b8;">
+                    <span style="color:#64748b;">Северсталь</span>
+                    <span style="color:#64748b;">НЛМК</span>
+                    <span style="color:#64748b;">ММК</span>
+                    <span style="color:#64748b;">Евраз</span>
+                    <span style="color:#64748b;">Мечел</span>
+                    <span style="color:#64748b;">ТМК</span>
+                    <span style="color:#64748b;">ОЭМК</span>
+                    <span style="color:#64748b;">Уральская Сталь</span>
+                </div>
+                <!-- Group 2 (duplicate) -->
+                <div class="flex items-center gap-12 text-sm font-bold uppercase tracking-wider" style="color:#94a3b8;">
+                    <span style="color:#64748b;">Северсталь</span>
+                    <span style="color:#64748b;">НЛМК</span>
+                    <span style="color:#64748b;">ММК</span>
+                    <span style="color:#64748b;">Евраз</span>
+                    <span style="color:#64748b;">Мечел</span>
+                    <span style="color:#64748b;">ТМК</span>
+                    <span style="color:#64748b;">ОЭМК</span>
+                    <span style="color:#64748b;">Уральская Сталь</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CASE STUDY ========== -->
+    <section id="cases" class="py-20 lg:py-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="section-title mb-4">Кейсы</h2>
+                <p class="section-subtitle mx-auto">
+                    Как мы помогаем промышленным предприятиям закрывать потребности в редких сталях
+                </p>
+            </div>
+
+            <div class="case-card" data-aos="fade-up">
+                <div class="relative z-10 grid lg:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-5" style="color:#fb923c;">
+                            Кейс
+                        </div>
+                        <h3 class="text-2xl lg:text-3xl font-bold mb-4">Челябинский трубопрокатный завод</h3>
+                        <p class="text-sm leading-relaxed mb-6" style="color:rgba(255,255,255,0.7);">
+                            Обеспечили бесперебойную поставку жаропрочных марок стали 20Х23Н18 и 12Х18Н10Т 
+                            для производства труб специального назначения. Сократили срок поставки 
+                            с 45 до 12 дней за счёт алгоритмов платформы.
+                        </p>
+                        <div class="flex items-center gap-8 text-sm">
+                            <div>
+                                <div class="text-2xl font-bold text-white">-73%</div>
+                                <div style="color:rgba(255,255,255,0.5);">срок поставки</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-white">2 400 т</div>
+                                <div style="color:rgba(255,255,255,0.5);">отгружено</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-white">99.7%</div>
+                                <div style="color:rgba(255,255,255,0.5);">качества</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden lg:flex justify-center">
+                        <div style="width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.08);">
+                            <i class="fas fa-industry" style="font-size:4rem;color:rgba(255,255,255,0.08);"></i>
+                        </div>
+                    </div>
+                </div>
+                <a href="#contacts" class="inline-flex items-center gap-2 mt-6 text-sm font-semibold relative z-10" style="color:#fb923c;">
+                    Читать полный кейс <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTACTS / DEMO ========== -->
+    <section id="contacts" class="py-20 lg:py-28 sec-bg-alt">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20">
+                <div data-aos="fade-right">
+                    <h2 class="section-title mb-4">Запросить доступ к платформе</h2>
+                    <p class="text-base leading-relaxed mb-8" style="color:#64748b;">
+                        Заполните форму — мы свяжемся с вами в течение 2 часов, 
+                        проведём демонстрацию платформы и подготовим индивидуальное предложение 
+                        по вашим маркам стали и объёмам.
+                    </p>
+                    <div class="space-y-4 text-sm">
+                        <div class="flex items-start gap-4">
+                            <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:#eef2f7;color:#1e3a5f;">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold" style="color:#0f172a;">Телефон</div>
+                                <a href="tel:+78129222158" class="no-underline" style="color:#64748b;">+7 (812) 922-21-58</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:#eef2f7;color:#1e3a5f;">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold" style="color:#0f172a;">Email</div>
+                                <a href="mailto:info@metspetsstal.ru" class="no-underline" style="color:#64748b;">info@metspetsstal.ru</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:#eef2f7;color:#1e3a5f;">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold" style="color:#0f172a;">Адрес</div>
+                                <div style="color:#64748b;">г. Москва, ул. Металлургов, д. 10</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-aos="fade-left">
+                    <form class="bg-white rounded-2xl p-6 sm:p-8 border border-steel-100" onsubmit="handleForm(event)">
+                        <div class="grid sm:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="form-label">Имя *</label>
+                                <input type="text" required placeholder="Иван" class="form-input">
+                            </div>
+                            <div>
+                                <label class="form-label">Фамилия</label>
+                                <input type="text" placeholder="Иванов" class="form-input">
+                            </div>
+                        </div>
+                        <div class="grid sm:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="form-label">Телефон *</label>
+                                <input type="tel" required placeholder="+7 (999) 123-45-67" class="form-input">
+                            </div>
+                            <div>
+                                <label class="form-label">Email</label>
+                                <input type="email" placeholder="ivanov@example.com" class="form-input">
+                            </div>
+                        </div>
+                        <div class="grid sm:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="form-label">Компания</label>
+                                <input type="text" placeholder="ООО «СтальПроект»" class="form-input">
+                            </div>
+                            <div>
+                                <label class="form-label">Регион</label>
+                                <input type="text" placeholder="Московская обл." class="form-input">
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label">Что нужно? *</label>
+                            <textarea rows="4" required placeholder="Укажите марку стали, размеры, объём партии..." class="form-input resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary w-full justify-center text-base py-3.5">
+                            <i class="fas fa-paper-plane"></i> Отправить заявку
+                        </button>
+                        <p class="text-xs text-center mt-4" style="color:#94a3b8;">
+                            Нажимая «Отправить», вы соглашаетесь на обработку персональных данных
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer style="background:#0f172a;border-top:1px solid rgba(255,255,255,0.04);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-10">
+                <!-- Brand -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center gap-2.5 font-bold text-lg text-white mb-4">
+                        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                            <rect x="1.5" y="1.5" width="29" height="29" rx="7" stroke="#fb923c" stroke-width="2.5" fill="none"/>
+                            <path d="M9 23V13l7-5 7 5v10H9z" stroke="#fb923c" stroke-width="1.8" fill="none" stroke-linejoin="round"/>
+                            <path d="M13 23V16.5h6V23" stroke="#fb923c" stroke-width="1.8" fill="none" stroke-linejoin="round"/>
+                        </svg>
+                        МетСпецСталь
+                    </div>
+                    <p class="text-sm leading-relaxed mb-6" style="color:rgba(255,255,255,0.4);max-width:320px;">
+                        Единая платформа поставок редких и легированных сталей. 
+                        От килограмма до промышленных партий.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="https://wa.me/78129222158" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg flex items-center justify-center transition-all" style="background:rgba(37,211,102,0.1);color:#25D366;" onmouseover="this.style.background='rgba(37,211,102,0.2)'" onmouseout="this.style.background='rgba(37,211,102,0.1)'">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://t.me/metspetsstal" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg flex items-center justify-center transition-all" style="background:rgba(0,136,204,0.1);color:#0088cc;" onmouseover="this.style.background='rgba(0,136,204,0.2)'" onmouseout="this.style.background='rgba(0,136,204,0.1)'">
+                            <i class="fab fa-telegram-plane"></i>
+                        </a>
+                        <a href="https://vk.com/metspetsstal" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg flex items-center justify-center transition-all" style="background:rgba(74,118,168,0.1);color:#6d8fc6;" onmouseover="this.style.background='rgba(74,118,168,0.2)'" onmouseout="this.style.background='rgba(74,118,168,0.1)'">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Platform -->
+                <div>
+                    <h4 class="text-xs font-semibold uppercase tracking-widest text-white/60 mb-4">Платформа</h4>
+                    <div class="space-y-1.5">
+                        <a href="#features" class="footer-link">Отслеживание</a>
+                        <a href="#features" class="footer-link">Контроль качества</a>
+                        <a href="#features" class="footer-link">Онлайн-платежи</a>
+                        <a href="#features" class="footer-link">Маркетплейс</a>
+                        <a href="#features" class="footer-link">Аналитика</a>
+                        <a href="#features" class="footer-link">API и интеграции</a>
+                    </div>
+                </div>
+
+                <!-- Marketplace -->
+                <div>
+                    <h4 class="text-xs font-semibold uppercase tracking-widest text-white/60 mb-4">Продукция</h4>
+                    <div class="space-y-1.5">
+                        <a href="#products" class="footer-link">Листовая спецсталь</a>
+                        <a href="#products" class="footer-link">Легированные стали</a>
+                        <a href="#products" class="footer-link">Нержавеющие сплавы</a>
+                        <a href="#products" class="footer-link">Редкие марки</a>
+                        <a href="#products" class="footer-link">Прайс-лист</a>
+                    </div>
+                </div>
+
+                <!-- Get Started -->
+                <div>
+                    <h4 class="text-xs font-semibold uppercase tracking-widest text-white/60 mb-4">Начать</h4>
+                    <div class="space-y-3">
+                        <a href="#contacts" class="btn-primary text-xs w-full justify-center py-2.5">
+                            <i class="fas fa-paper-plane"></i> Запросить цену
+                        </a>
+                        <a href="#contacts" class="block text-sm text-white/40 hover:text-white transition-colors no-underline">
+                            <i class="fas fa-phone-alt mr-2" style="font-size:0.7rem;"></i> +7 (812) 922-21-58
+                        </a>
+                        <a href="mailto:info@metspetsstal.ru" class="block text-sm text-white/40 hover:text-white transition-colors no-underline">
+                            <i class="far fa-envelope mr-2" style="font-size:0.7rem;"></i> info@metspetsstal.ru
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom -->
+        <div style="border-top:1px solid rgba(255,255,255,0.04);">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-3 text-xs" style="color:rgba(255,255,255,0.25);">
+                    <span>© 2026 МетСпецСталь. Все права защищены.</span>
+                    <div class="flex gap-5">
+                        <a href="#" class="hover:text-white transition-colors no-underline" style="color:inherit;">Политика конфиденциальности</a>
+                        <a href="#" class="hover:text-white transition-colors no-underline" style="color:inherit;">Условия использования</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({ duration: 600, once: true, offset: 60 });
+
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('nav-scrolled', window.scrollY > 60);
+        });
+
+        function handleForm(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const original = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+            btn.disabled = true;
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check-circle"></i> Заявка отправлена!';
+                btn.style.background = '#16a34a';
+                e.target.reset();
+                setTimeout(() => {
+                    btn.innerHTML = original;
+                    btn.style.background = '';
+                    btn.disabled = false;
+                }, 3000);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

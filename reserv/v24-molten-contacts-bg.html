@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МетСпецСталь — редкие и легированные стали</title>
+    <meta name="description" content="Поставка редких марок стали, легированных и специальных сплавов.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        dark: { 50: '#eef2f7', 100: '#c8d2e0', 200: '#8a9bb0', 300: '#4a5a70', 400: '#2a3850', 500: '#0f1a2e', 600: '#0c1525', 700: '#09101d', 800: '#060b15', 900: '#03060d' },
+                        molten: { 50: '#fff7ed', 100: '#ffedd5', 200: '#fed7aa', 300: '#fdba74', 400: '#fb923c', 500: '#ff6b35', 600: '#ea580c', 700: '#c2410c' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; color: #e2e8f0; background: #0f1a2e; }
+        section[id] { scroll-margin-top: 120px; }
+
+        /* Navigation */
+        .nav-scrolled { background: rgba(15,26,46,0.92) !important; backdrop-filter: blur(16px); box-shadow: 0 1px 0 rgba(255,107,53,0.2); }
+        .nav-link { position: relative; color: rgba(255,255,255,0.75); font-weight: 500; transition: color 0.3s; }
+        .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: #ff6b35; transition: width 0.3s; }
+        .nav-link:hover { color: #ff6b35; }
+        .nav-link:hover::after { width: 100%; }
+        .nav-scrolled .nav-link { color: #94a3b8; }
+        .nav-scrolled .nav-link:hover { color: #ff6b35; }
+        .nav-logo, .nav-logo svg rect, .nav-logo svg path { transition: all 0.3s; }
+        .nav-scrolled .nav-logo { color: #f1f5f9 !important; }
+        .nav-phone { transition: all 0.3s; }
+
+        /* Hero background */
+        .hero-bg {
+            position: relative;
+            background: #060b15;
+        }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(6,11,21,0.92) 0%, rgba(6,11,21,0.6) 35%, rgba(6,11,21,0.2) 65%, rgba(6,11,21,0.05) 100%),
+                linear-gradient(0deg, rgba(6,11,21,0.6) 0%, transparent 40%, rgba(6,11,21,0.2) 100%),
+                radial-gradient(ellipse 80% 60% at 70% 50%, rgba(255,107,53,0.12) 0%, transparent 60%),
+                url('Flux_Dev_Vibrant_highcontrast_image_of_the_intense_production__2.jpg') center center / cover no-repeat;
+            z-index: 0;
+        }
+        .hero-bg .hero-content { position: relative; z-index: 1; }
+
+        /* Glow effects */
+        .glow-orange { box-shadow: 0 0 40px rgba(255,107,53,0.15), 0 0 80px rgba(255,107,53,0.05); }
+        .text-glow { text-shadow: 0 0 40px rgba(255,107,53,0.3); }
+        .btn-cta { background: linear-gradient(135deg, #ff6b35, #ea580c); transition: all 0.3s; position: relative; overflow: hidden; }
+        .btn-cta:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(255,107,53,0.45), 0 0 60px rgba(255,107,53,0.15); }
+        .btn-outline { border: 1.5px solid rgba(255,107,53,0.4); color: #ff6b35; transition: all 0.3s; }
+        .btn-outline:hover { border-color: #ff6b35; background: rgba(255,107,53,0.08); color: #ff6b35; box-shadow: 0 0 30px rgba(255,107,53,0.1); }
+
+        /* Top bar */
+        .top-bar { height: 36px; background: #060b15; display: flex; align-items: center; position: fixed; top: 0; left: 0; right: 0; z-index: 60; border-bottom: 1px solid rgba(255,107,53,0.08); }
+        .top-bar a { color: rgba(255,255,255,0.65); text-decoration: none; transition: all 0.2s; }
+        .top-bar a:hover { color: #ff6b35; }
+        .top-bar .social-icon { width: 26px; height: 26px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.65rem; transition: all 0.25s; color: white; }
+        .top-bar .social-icon:hover { transform: scale(1.2); filter: brightness(1.2); }
+        .top-bar .social-icon-main { width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; transition: all 0.25s; color: white; }
+        .top-bar .social-icon-main:hover { transform: scale(1.2); filter: brightness(1.2); }
+        .top-bar .social-icon-max { width: 34px; height: 34px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; transition: all 0.3s; background: transparent; text-decoration: none; box-shadow: 0 0 10px rgba(83,62,238,0.3); position: relative; }
+        .top-bar .social-icon-max:hover { transform: scale(1.15); box-shadow: 0 0 20px rgba(83,62,238,0.5); }
+
+        /* Blinking dot */
+        .dot-blink {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: #22c55e;
+            animation: blinkPulse 1.8s ease-in-out infinite;
+            box-shadow: 0 0 8px rgba(34,197,94,0.5);
+        }
+        @keyframes blinkPulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 8px rgba(34,197,94,0.5); }
+            50% { opacity: 0.3; box-shadow: 0 0 2px rgba(34,197,94,0.1); }
+        }
+
+        /* Glow hover for cards */
+        .glass-card { background: rgba(255,255,255,0.03); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.06); border-radius: 20px; transition: all 0.4s; }
+        .glass-card:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,107,53,0.2); box-shadow: 0 0 30px rgba(255,107,53,0.06); }
+        .product-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 2rem; transition: all 0.4s; position: relative; overflow: hidden; }
+        .product-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #ff6b35, #fb923c); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
+        .product-card:hover { transform: translateY(-8px); border-color: rgba(255,107,53,0.2); box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(255,107,53,0.06); }
+        .product-card:hover::before { transform: scaleX(1); }
+
+        .form-input { width: 100%; padding: 0.875rem 1.25rem; border: 1.5px solid rgba(255,255,255,0.08); border-radius: 12px; font-family: inherit; font-size: 0.95rem; transition: all 0.3s; background: rgba(255,255,255,0.04); color: #e2e8f0; }
+        .form-input:focus { outline: none; border-color: #ff6b35; box-shadow: 0 0 0 4px rgba(255,107,53,0.1); background: rgba(255,255,255,0.06); }
+        .form-input::placeholder { color: rgba(148,163,184,0.5); }
+
+        .marquee-track { display: flex; gap: 3rem; animation: scrollGrades 30s linear infinite; width: max-content; }
+        .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+        @keyframes scrollGrades { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        .section-title { font-size: 2.5rem; font-weight: 800; color: #f1f5f9; line-height: 1.2; letter-spacing: -0.02em; }
+        .section-subtitle { font-size: 1.1rem; color: #64748b; max-width: 600px; line-height: 1.7; }
+
+        /* Scroll indicator */
+        .scroll-indicator { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.3); font-size: 0.8rem; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+
+        /* Spark animation */
+        .spark { animation: sparkFade 2s ease-in-out infinite; }
+        .spark:nth-child(even) { animation-delay: 0.5s; }
+        .spark:nth-child(3n) { animation-delay: 1s; }
+        @keyframes sparkFade { 0%,100% { opacity: 0; } 50% { opacity: 1; } }
+
+        /* ===== STEEL GRADES (v2) ===== */
+        .grade-group {
+            border-radius: 20px;
+            padding: 1.75rem;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        .grade-group::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.15), transparent);
+        }
+        .grade-group::after {
+            content: ''; position: absolute; inset: 0;
+            pointer-events: none; z-index: 0;
+            opacity: 0.15;
+        }
+        .grade-group:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        .grade-group > * { position: relative; z-index: 1; }
+
+        /* Background grade names pattern */
+        .grades-bg-pattern {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        #grades {
+            background: linear-gradient(180deg, rgba(15,23,42,0.3) 0%, rgba(15,23,42,0.6) 100%);
+        }
+
+        .grp-bg-graphic {
+            position: absolute;
+            top: 0; right: 0;
+            width: 65%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 1;
+        }
+
+        /* Background patterns per group */
+        .bg-pat-stainless::after {
+            background-image:
+                radial-gradient(circle at 30% 40%, rgba(59,130,246,0.2) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(30,58,95,0.15) 0%, transparent 40%);
+        }
+        .bg-pat-heat::after {
+            background-image:
+                radial-gradient(circle at 50% 30%, rgba(234,88,12,0.2) 0%, transparent 50%),
+                radial-gradient(circle at 20% 70%, rgba(251,146,60,0.1) 0%, transparent 40%);
+        }
+        .bg-pat-tool::after {
+            background-image:
+                radial-gradient(circle at 60% 40%, rgba(168,85,247,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 30% 70%, rgba(107,33,168,0.1) 0%, transparent 40%);
+        }
+        .bg-pat-struct::after {
+            background-image:
+                radial-gradient(circle at 40% 30%, rgba(148,163,184,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(30,58,95,0.1) 0%, transparent 40%);
+        }
+        .grp-icon {
+            width: 38px; height: 38px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem; flex-shrink: 0;
+        }
+        .steel-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 14px;
+            padding: 1.1rem 1.25rem;
+            transition: all 0.3s;
+        }
+        .steel-card:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(255,255,255,0.1);
+        }
+        .steel-grade {
+            font-family: 'Courier New', monospace;
+            font-weight: 700; font-size: 1.05rem;
+            color: #f1f5f9; letter-spacing: 0.03em;
+        }
+        .steel-aisi {
+            font-size: 0.65rem; font-weight: 600;
+            padding: 0.2rem 0.5rem; border-radius: 4px;
+            background: rgba(255,255,255,0.05);
+            color: #64748b; letter-spacing: 0.03em;
+        }
+        .steel-desc {
+            font-size: 0.8rem; color: #64748b;
+            margin-bottom: 0.75rem; line-height: 1.4;
+        }
+        .steel-body {
+            border-top: 1px solid rgba(255,255,255,0.04);
+            padding-top: 0.75rem;
+        }
+        /* Element blocks (Mendeleev style) */
+        .el-row {
+            display: flex; flex-wrap: wrap; gap: 0.4rem;
+            margin-bottom: 0.65rem;
+        }
+        .el-block {
+            display: flex; flex-direction: column; align-items: center;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 6px;
+            padding: 0.25rem 0.5rem;
+            min-width: 2.8rem;
+            transition: all 0.2s;
+        }
+        .el-block:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(255,255,255,0.1);
+            transform: translateY(-1px);
+        }
+        .el-symbol {
+            font-family: 'Courier New', monospace;
+            font-weight: 800; font-size: 0.9rem;
+            line-height: 1.1;
+        }
+        .el-pct {
+            font-size: 0.55rem; font-weight: 600;
+            color: #64748b;
+            line-height: 1;
+        }
+        /* Property icons row */
+        .prop-row {
+            display: flex; flex-wrap: wrap; gap: 1rem;
+        }
+        .prop-item {
+            display: flex; align-items: center; gap: 0.4rem;
+            font-size: 0.72rem;
+        }
+        .prop-icon-prop {
+            width: 22px; height: 22px; border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.6rem; flex-shrink: 0;
+        }
+        .prop-value {
+            white-space: nowrap;
+        }
+        .steel-note {
+            font-size: 0.75rem; padding: 0.7rem 1rem;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.04);
+            color: #64748b; line-height: 1.4;
+        }
+
+        /* ===== UPLOAD CARD ===== */
+        .upload-card {
+            background: rgba(6,11,21,0.35);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px;
+            padding: 1.5rem;
+        }
+        .upload-zone {
+            border: 2px dashed rgba(255,107,53,0.25);
+            border-radius: 16px;
+            padding: 1.75rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1.25rem;
+            background: rgba(255,107,53,0.03);
+        }
+        .upload-zone:hover, .upload-zone.dragover {
+            border-color: #ff6b35;
+            background: rgba(255,107,53,0.06);
+        }
+        .upload-zone .upload-icon {
+            font-size: 2rem;
+            color: rgba(255,107,53,0.3);
+            margin-bottom: 0.6rem;
+            transition: all 0.3s;
+        }
+        .upload-zone:hover .upload-icon {
+            color: rgba(255,107,53,0.5);
+            transform: translateY(-2px);
+        }
+        .upload-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 0.15rem;
+        }
+        .upload-subtitle {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 0.5rem;
+        }
+        .upload-hint {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.55);
+            margin-bottom: 0.4rem;
+        }
+        .upload-link {
+            color: #ff6b35;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        .upload-link:hover {
+            color: #fb923c;
+        }
+        .upload-formats {
+            font-size: 0.6rem;
+            color: rgba(255,255,255,0.25);
+        }
+        .upload-fields {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .field-row {
+            display: flex;
+            gap: 0.75rem;
+        }
+        .field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+        .field-label {
+            font-size: 0.68rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .upload-input {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: 1.5px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            background: rgba(255,255,255,0.04);
+            color: rgba(255,255,255,0.9);
+        }
+        .upload-input:focus {
+            outline: none;
+            border-color: #ff6b35;
+            box-shadow: 0 0 0 3px rgba(255,107,53,0.08);
+            background: rgba(255,255,255,0.06);
+        }
+        .upload-input::placeholder {
+            color: rgba(255,255,255,0.25);
+        }
+        .upload-msg {
+            font-size: 0.68rem;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.5;
+            text-align: center;
+            padding: 0 0.5rem;
+        }
+
+        /* ===== COVERAGE MAP ===== */
+        .coverage-map-bg {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .coverage-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 1.5rem 1.25rem;
+            text-align: center;
+            transition: all 0.3s;
+            backdrop-filter: blur(4px);
+        }
+        .coverage-card:hover {
+            border-color: rgba(255,107,53,0.15);
+            background: rgba(255,107,53,0.03);
+            transform: translateY(-3px);
+        }
+        .coverage-card .cov-icon {
+            font-size: 1.3rem;
+            color: rgba(255,107,53,0.4);
+            margin-bottom: 0.5rem;
+        }
+        .coverage-card .cov-num {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #f1f5f9;
+            line-height: 1.1;
+            margin-bottom: 0.25rem;
+        }
+        .coverage-card .cov-label {
+            font-size: 0.75rem;
+            color: #64748b;
+            line-height: 1.3;
+        }
+
+        /* ===== CONTACTS BG ===== */
+        .contacts-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(13,17,23,0.92) 0%, rgba(13,17,23,0.4) 35%, rgba(13,17,23,0.05) 100%),
+                linear-gradient(0deg, rgba(13,17,23,0.3) 0%, transparent 40%),
+                url('Flux_Schnell_a_surreal_and_vibrant_cinematic_photo_of_Sheet_me_0.jpg') center center / cover no-repeat;
+            z-index: 0;
+        }
+        #contacts .glass-card {
+            background: rgba(6,11,21,0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        #contacts .glass-card:hover {
+            border-color: rgba(255,107,53,0.15);
+            background: rgba(6,11,21,0.7);
+        }
+        @media (max-width: 768px) {
+            .field-row {
+                flex-direction: column;
+            }
+            .upload-card {
+                padding: 1rem;
+            }
+        }
+
+        /* ===== STEEL HISTORY POPUP ===== */
+        .steel-card {
+            position: relative;
+            z-index: 2;
+        }
+        .steel-history {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(15,23,42,0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 0.9rem 1.1rem;
+            font-size: 0.72rem;
+            color: #94a3b8;
+            line-height: 1.5;
+            opacity: 0;
+            transform: translateY(0);
+            transition: transform 3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+            z-index: 1;
+            pointer-events: none;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+            will-change: transform;
+        }
+        .steel-history .hist-title {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.4rem;
+        }
+        .steel-card:hover .steel-history {
+            opacity: 1;
+            transform: translateY(-100%);
+            z-index: 20;
+        }
+        /* Allow popup to overflow group boundary */
+        .grade-group {
+            overflow: visible !important;
+        }
+
+        @media (max-width: 768px) {
+            .section-title { font-size: 1.75rem; }
+            .product-card { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== TOP BAR ========== -->
+    <div class="top-bar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="flex items-center justify-between h-full text-white/60 text-[0.7rem]">
+                <div class="flex items-center gap-3 sm:gap-5">
+                    <span class="hidden sm:inline-flex items-center gap-1.5">
+                        <i class="far fa-clock"></i> Пн–Пт 9:00–18:00
+                    </span>
+                    <a href="tel:+78129222158" class="inline-flex items-center gap-1.5">
+                        <i class="fas fa-phone-alt" style="font-size:0.5rem;"></i> +7 (812) 922-21-58
+                    </a>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="flex items-center gap-1.5 sm:gap-2">
+                        <a href="https://wa.me/78129222158?text=Макс,%20здравствуйте!" target="_blank" rel="noopener" class="social-icon-max" title="Написать Максу в WhatsApp">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="20" height="20" style="display:block;">
+                                <defs>
+                                    <linearGradient id="maxGrad1"><stop offset="0" stop-color="#4cf"/><stop offset=".662" stop-color="#53e"/><stop offset="1" stop-color="#93d"/></linearGradient>
+                                    <linearGradient id="maxGrad2" x1="117.847" x2="1000" y1="760.536" y2="500" gradientUnits="userSpaceOnUse" href="#maxGrad1"/>
+                                    <radialGradient id="maxGrad3" cx="-87.392" cy="1166.116" r="500" fx="-87.392" fy="1166.116" gradientTransform="rotate(51.356 1551.478 559.3)scale(2.427 1)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#00f" stop-opacity="0.3"/><stop offset="1" stop-opacity="0"/></radialGradient>
+                                </defs>
+                                <rect width="1000" height="1000" fill="url(#maxGrad2)" ry="249.681"/>
+                                <rect width="1000" height="1000" fill="url(#maxGrad3)" ry="249.681"/>
+                                <path fill="#fff" fill-rule="evenodd" d="M508.211 878.328c-75.007 0-109.864-10.95-170.453-54.75-38.325 49.275-159.686 87.783-164.979 21.9 0-49.456-10.95-91.248-23.36-136.873-14.782-56.21-31.572-118.807-31.572-209.508 0-216.626 177.754-379.597 388.357-379.597 210.785 0 375.947 171.001 375.947 381.604.707 207.346-166.595 376.118-373.94 377.224m3.103-571.585c-102.564-5.292-182.499 65.7-200.201 177.024-14.6 92.162 11.315 204.398 33.397 210.238 10.585 2.555 37.23-18.98 53.837-35.587a189.8 189.8 0 0 0 92.71 33.032c106.273 5.112 197.08-75.794 204.215-181.95 4.154-106.382-77.67-196.486-183.958-202.574Z" clip-rule="evenodd"/>
+                            </svg>
+                        </a>
+                        <a href="https://wa.me/78129222158" target="_blank" rel="noopener" class="social-icon" style="background:#25D366;">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://t.me/metspetsstal" target="_blank" rel="noopener" class="social-icon" style="background:#0088cc;">
+                            <i class="fab fa-telegram-plane"></i>
+                        </a>
+                        <a href="https://vk.com/metspetsstal" target="_blank" rel="noopener" class="social-icon" style="background:#4a76a8;">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                    </div>
+                    <span class="text-white/20 hidden sm:inline">|</span>
+                    <a href="mailto:info@metspetsstal.ru" class="hidden sm:inline-flex items-center gap-1.5">
+                        <i class="far fa-envelope"></i> info@metspetsstal.ru
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav id="navbar" class="fixed top-9 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="#hero" class="flex items-center gap-3 nav-logo font-bold text-xl no-underline text-white">
+                    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                        <rect x="2" y="2" width="32" height="32" rx="8" stroke="#ff6b35" stroke-width="2.5" fill="none"/>
+                        <path d="M10 26V14l8-6 8 6v12H10z" stroke="#ff6b35" stroke-width="2" fill="none" stroke-linejoin="round"/>
+                        <path d="M14 26V18h8v8" stroke="#ff6b35" stroke-width="2" fill="none" stroke-linejoin="round"/>
+                    </svg>
+                    <span style="letter-spacing:-0.02em;">МетСпецСталь</span>
+                </a>
+
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#products" class="nav-link no-underline text-sm">Продукция</a>
+                    <a href="#advantages" class="nav-link no-underline text-sm">Преимущества</a>
+                    <a href="#contacts" class="nav-link no-underline text-sm">Контакты</a>
+                    <a href="tel:+78129222158" class="nav-phone flex items-center gap-2 font-semibold text-sm no-underline" style="color:#ff6b35;">
+                        <i class="fas fa-phone-alt text-xs"></i> +7 (812) 922-21-58
+                    </a>
+                </div>
+
+                <a href="#contacts" class="md:hidden text-white px-4 py-2 rounded-xl text-sm font-semibold no-underline" style="background:linear-gradient(135deg,#ff6b35,#ea580c);">
+                    <i class="fas fa-paper-plane mr-2"></i>Связь
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO ========== -->
+    <section id="hero" class="hero-bg min-h-screen flex items-center relative overflow-hidden pt-28">
+        <div class="hero-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <!-- Left: Text -->
+                <div data-aos="fade-up" data-aos-duration="800">
+                    <div class="inline-flex items-center gap-2 bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium border border-white/10 mb-6" style="color:#fb923c;">
+                        <span class="dot-blink"></span>
+                        Прямые поставки от производителей
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6" style="color:#f1f5f9;">
+                        Редкие и&nbsp;легированные<br/>
+                        <span style="color:#ff6b35;" class="text-glow">стали</span> под ваш проект
+                    </h1>
+                    <p class="text-lg sm:text-xl mb-8 leading-relaxed max-w-xl" style="color:rgba(255,255,255,0.8);">
+                        Поставляем специальные и редкие марки стали, легированные сплавы
+                        и листовой прокат с подтверждённым качеством.
+                        От килограмма до крупных партий.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#contacts" class="btn-cta text-white px-8 py-4 rounded-xl font-semibold text-base no-underline inline-flex items-center gap-3">
+                            <i class="fas fa-paper-plane"></i>
+                            Запросить цену
+                        </a>
+                        <a href="#products" class="btn-outline px-8 py-4 rounded-xl font-semibold text-base no-underline inline-flex items-center gap-3">
+                            <i class="fas fa-layer-group"></i>
+                            Каталог
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: File upload form -->
+                <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150">
+                    <div class="upload-card">
+                        <div class="upload-zone" id="dropZone">
+                            <div class="upload-icon">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <div class="upload-title">Загрузите ваш заказ-наряд</div>
+                            <div class="upload-subtitle">или спецификацию на подбор позиций</div>
+                            <div class="upload-hint">Перетащите файл сюда или <span class="upload-link" onclick="document.getElementById('fileInput').click()">выберите</span></div>
+                            <input type="file" id="fileInput" multiple style="display:none" accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.png,.zip">
+                            <div class="upload-formats">PDF, DOC, XLS, JPG, PNG, ZIP — до 20 МБ</div>
+                        </div>
+
+                        <div class="upload-fields">
+                            <div class="field-row">
+                                <div class="field-group flex-1">
+                                    <label class="field-label">Телефон *</label>
+                                    <input type="tel" required placeholder="+7 (999) 123-45-67" class="upload-input">
+                                </div>
+                                <div class="field-group flex-1">
+                                    <label class="field-label">Email</label>
+                                    <input type="email" placeholder="ivanov@example.com" class="upload-input">
+                                </div>
+                            </div>
+                            <div class="field-group">
+                                <label class="field-label">Контактное лицо / Организация</label>
+                                <input type="text" placeholder="Иван Иванов, ООО «СтальПроект»" class="upload-input">
+                            </div>
+                            <button type="submit" class="btn-cta text-white w-full py-3.5 rounded-xl font-semibold text-sm no-underline inline-flex items-center justify-center gap-3" onclick="handleUploadForm(event)">
+                                <i class="fas fa-paper-plane"></i>
+                                Отправить запрос
+                            </button>
+                            <div class="upload-msg">
+                                <i class="fas fa-bolt" style="color:#ff6b35;font-size:0.65rem;"></i>
+                                Присылайте ваш запрос — менеджер ответит в течение 5 минут, 
+                                даст информацию и цены по наличию и срокам доставки
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <span>Листайте ниже</span>
+            <i class="fas fa-chevron-down text-xs"></i>
+        </div>
+    </section>
+
+    <!-- ========== STATISTICS ========== -->
+    <section class="relative z-10 -mt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card p-8" data-aos="fade-up" data-aos-duration="800">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="text-3xl font-extrabold" style="color:#ff6b35;">15+</div>
+                        <div class="text-sm mt-1" style="color:#64748b;">Лет на рынке</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-extrabold" style="color:#ff6b35;">200+</div>
+                        <div class="text-sm mt-1" style="color:#64748b;">Марок стали</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-extrabold" style="color:#ff6b35;">50+</div>
+                        <div class="text-sm mt-1" style="color:#64748b;">Партнёров-заводов</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-extrabold" style="color:#ff6b35;">98%</div>
+                        <div class="text-sm mt-1" style="color:#64748b;">Выполненных заказов</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== STEEL GRADES CATALOG ========== -->
+    <section id="grades" class="py-24 sm:py-32 relative">    <!-- overflow-visible for history popups -->
+        <!-- Background: dense steel grade texture -->
+        <svg class="grades-bg-pattern" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+            <defs>
+                <pattern id="gradeText" x="0" y="0" width="400" height="60" patternUnits="userSpaceOnUse" patternTransform="rotate(-20)">
+                    <g fill="rgba(255,255,255,0.02)" font-family="'Courier New',monospace" font-weight="600">
+                        <text x="0" y="20" font-size="11">12Х18Н10Т  40Х  Р6М5  ШХ15  20Х23Н18  08Х18Н10  Х12МФ</text>
+                        <text x="0" y="44" font-size="9">40Х  ШХ15  20Х23Н18  12Х13  Р6М5  08Х18Н10Т  Х12МФ  40Х</text>
+                    </g>
+                </pattern>
+                <pattern id="gradeText2" x="0" y="0" width="400" height="60" patternUnits="userSpaceOnUse" patternTransform="rotate(-20)">
+                    <g fill="rgba(255,255,255,0.015)" font-family="'Courier New',monospace" font-weight="600">
+                        <text x="0" y="20" font-size="10">Х12МФ  08Х18Н10  Р6М5  40Х  12Х18Н10Т  ШХ15  20Х23Н18</text>
+                        <text x="0" y="42" font-size="8">20Х23Н18  12Х13  40Х  Р6М5  ШХ15  08Х18Н10Т  Х12МФ</text>
+                    </g>
+                </pattern>
+            </defs>
+            <rect width="800" height="600" fill="url(#gradeText)"/>
+            <rect width="800" height="600" fill="url(#gradeText2)" transform="translate(200,30)"/>
+            <rect width="800" height="600" fill="url(#gradeText)" transform="translate(100,15)"/>
+        </svg>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-title mb-4">Основные марки спецсталей</h2>
+                <p class="section-subtitle mx-auto" style="max-width:640px;">
+                    Выберите нужную сталь по составу, температуре плавления и назначению — 
+                    все характеристики собраны в наглядные карточки для быстрого подбора
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-6">
+                <!-- ===== GROUP 1: Нержавеющие ===== -->
+                <div class="grade-group bg-pat-stainless" data-aos="fade-up" style="background:linear-gradient(135deg, rgba(30,58,95,0.45), rgba(15,23,42,0.7));border:1px solid rgba(59,130,246,0.15);">
+                    <!-- BG graphic: crystal lattice -->
+                    <svg class="grp-bg-graphic" viewBox="0 0 300 300" fill="none">
+                        <g stroke="#60a5fa" stroke-width="0.8" opacity="0.06">
+                            <line x1="50" y1="80" x2="120" y2="40"/>
+                            <line x1="120" y1="40" x2="190" y2="80"/>
+                            <line x1="50" y1="80" x2="50" y2="160"/>
+                            <line x1="120" y1="40" x2="120" y2="120"/>
+                            <line x1="190" y1="80" x2="190" y2="160"/>
+                            <line x1="50" y1="160" x2="120" y2="120"/>
+                            <line x1="120" y1="120" x2="190" y2="160"/>
+                            <line x1="190" y1="160" x2="260" y2="120"/>
+                            <line x1="120" y1="120" x2="120" y2="200"/>
+                            <line x1="190" y1="160" x2="190" y2="240"/>
+                            <line x1="120" y1="200" x2="190" y2="240"/>
+                            <line x1="190" y1="240" x2="260" y2="200"/>
+                        </g>
+                        <g fill="#60a5fa" opacity="0.08">
+                            <circle cx="120" cy="40" r="4"/>
+                            <circle cx="50" cy="80" r="4"/>
+                            <circle cx="190" cy="80" r="4"/>
+                            <circle cx="120" cy="120" r="4"/>
+                            <circle cx="190" cy="160" r="4"/>
+                            <circle cx="50" cy="160" r="4"/>
+                            <circle cx="260" cy="120" r="4"/>
+                        </g>
+                    </svg>
+                    <div class="flex items-center gap-3 mb-5">
+                        <span class="grp-icon" style="background:rgba(59,130,246,0.15);color:#60a5fa;">
+                            <i class="fas fa-shield"></i>
+                        </span>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Нержавеющие</h3>
+                            <p class="text-xs text-white/40 uppercase tracking-wider">Коррозионно-стойкие стали</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- 08Х18Н10 -->
+                        <div class="steel-card">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="steel-grade">08Х18Н10</span>
+                                <span class="steel-aisi">AISI 304</span>
+                            </div>
+                            <p class="steel-desc">Высокая пластичность, отличная штампуемость, полируется</p>
+                            <div class="steel-history">
+                                <div class="hist-title"><i class="fas fa-book-open" style="font-size:0.55rem;color:#60a5fa;"></i><span style="color:#60a5fa;">История стали</span></div>
+                                Разработана в 1924 году в Англии (Firth Vickers). Первая нержавеющая сталь с содержанием 18% хрома и 8% никеля. В СССР аналог создан в 1930-х. Сталь 304 — самая распространённая нержавейка в мире.
+                            </div>
+                            <div class="steel-body">
+                                <div class="el-row">
+                                    <div class="el-block"><span class="el-symbol" style="color:#60a5fa;">C</span><span class="el-pct">≤0.08%</span></div>
+                                    <div class="el-block"><span class="el-symbol" style="color:#60a5fa;">Cr</span><span class="el-pct">18%</span></div>
+                                    <div class="el-block"><span class="el-symbol" style="color:#60a5fa;">Ni</span><span class="el-pct">10%</span></div>
+                                </div>
+                                <div class="prop-row">
+                                    <div class="prop-item">
+                                        <span class="prop-icon-prop" style="background:rgba(96,165,250,0.1);color:#60a5fa;"><i class="fas fa-temperature-high"></i></span>
+                                        <span class="prop-value" style="color:#60a5fa;">1450°C</span>
+                                    </div>
+                                    <div class="prop-item">
+                                        <span class="prop-icon-prop" style="background:rgba(96,165,250,0.1);color:#60a5fa;"><i class="fas fa-utensils"></i></span>
+                                        <span class="prop-value" style="color:#94a3b8;">Пищевое оборудование</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 12Х13 -->
+                        <div class="steel-card">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="steel-grade">12Х13</span>
+                                <span class="steel-aisi">AISI 410</span>
+                            </div>
+                            <p class="steel-desc">Мартенситная, магнитная, высокая твёрдость после закалки</p>
+                            <div class="steel-history">
+                                <div class="hist-title"><i class="fas fa-book-open" style="font-size:0.55rem;color:#60a5fa;"></i><span style="color:#60a5fa;">История стали</span></div>
+                                Открыта Гарри Бреарли в 1913 году в Англии. Ища материал для стволов орудий, устойчивый к коррозии, он обнаружил, что сталь с 12–13% хрома обладает коррозионной стойкостью. Это открытие положило начало всей нержавеющей металлургии.
+                            </div>
+                            <div class="steel-body">
+                                <div class="el-row">
+                                    <div class="el-block"><span class="el-symbol" style="color:#60a5fa;">C</span><span class="el-pct">0.12%</span></div>
+                                    <div class="el-block"><span class="el-symbol" style="color:#60a5fa;">Cr</span><span class="el-pct">13%</span></div>
+                                </div>
+                                <div class="prop-row">
+                                    <div class="prop-item">
+                                        <span class="prop-icon-prop" style="background:rgba(96,165,250,0.1);color:#60a5fa;"><i class="fas fa-temperature-high"></i></span>
+                                        <span class="prop-value" style="color:#60a5fa;">1480°C</span>
+                                    </div>
+                                    <div class="prop-item">
+                                        <span class="prop-icon-prop" style="background:rgba(96,165,250,0.1);color:#60a5fa;"><i class="fas fa-fan"></i></span>
+                                        <span class="prop-value" style="color:#94a3b8;">Лопатки турбин, насосы</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== GROUP 2: Жаропрочные ===== -->
+                <div class="grade-group bg-pat-heat" data-aos="fade-up" data-aos-delay="100" style="background:linear-gradient(135deg, rgba(180,52,10,0.35), rgba(15,23,42,0.7));border:1px solid rgba(234,88,12,0.2);">
+                    <!-- BG graphic: flame -->
+                    <svg class="grp-bg-graphic" viewBox="0 0 200 300" fill="none">
+                        <g opacity="0.06">
+                            <path d="M100 260c-30-40-45-80-30-120 15-40 30-60 30-60s15 20 30 60c15 40 0 80-30 120z" fill="#fb923c"/>
+                            <path d="M100 240c-20-30-30-60-20-90s20-45 20-45 10 15 20 45c10 30 0 60-20 90z" fill="#fbbf24"/>
+                            <path d="M100 220c-12-20-18-40-12-60s12-30 12-30 6 10 12 30 0 40-12 60z" fill="#fff7ed"/>
+                        </g>
+                    </svg>
+                    <div class="flex items-center gap-3 mb-5">
+                        <span class="grp-icon" style="background:rgba(234,88,12,0.15);color:#fb923c;">
+                            <i class="fas fa-fire"></i>
+                        </span>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Жаропрочные</h3>
+                            <p class="text-xs text-white/40 uppercase tracking-wider">Для высоких температур</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- 20Х23Н18 -->
+                        <div class="steel-card">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="steel-grade">20Х23Н18</span>
+                                <span class="steel-aisi">AISI 310S</span>
+                            </div>
+                            <p class="steel-desc">Лидер по жаростойкости. Окалиностойкость до +1000°C</p>
+                            <div class="steel-history">
+                                <div class="hist-title"><i class="fas fa-book-open" style="font-size:0.55rem;color:#fb923c;"></i><span style="color:#fb923c;">История стали</span></div>
+                                Разработана в 1930-х годах для авиационной и нефтехимической промышленности. Высокое содержание хрома (23%) и никеля (18%) обеспечивает исключительную жаростойкость. Применялась в реактивных двигателях и печах крекинга нефти.
+                            </div>
+                            <div class="steel-body">
+                                <div class="el-row">
+                                    <div class="el-block"><span class="el-symbol" style="color:#fb923c;">C</span><span class="el-pct">0.20%</span></div>
+                                    <div class="el-block"><span class="el-symbol" style="color:#fb923c;">Cr</span><span class="el-pct">23%</span></div>
+                                    <div class="el-block"><span class="el-symbol" style="color:#fb923c;">Ni</span><span class="el-pct">18%</span></div>
+                                </div>
+                                <div class="prop-row">
+                                    <div class="prop-item">
+                                        <span class="prop-icon-prop" style="background:rgba(251,146,60,0.1);color:#fb923c;"><i class="fas fa-temperature-high"></i></span>
+                                        <span class="prop-value" style="color:#fb923c;">1400°C</span>
+                                    </div>
+                                    <div class="prop-item">
+                                        <span class="prop-icon-prop" style="background:rgba(251,146,60,0.1);color:#fb923c;"><i class="fas fa-fire"></i></span>
+                                        <span class="prop-value" style="color:#94a3b8;">Печи, термопары, муфели</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Доп. информация -->
+                        <div class="steel-note">
+                            <i class="fas fa-trophy" style="color:#fb923c;"></i>
+                            Содержит до <strong>23% Cr</strong> и <strong>18% Ni</strong> — один из лучших показателей жаростойкости
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== GROUP 3: Инструментальные ===== -->
+                <div class="grade-group bg-pat-tool" data-aos="fade-up" data-aos-delay="200" style="background:linear-gradient(135deg, rgba(107,33,168,0.3), rgba(15,23,42,0.7));border:1px solid rgba(168,85,247,0.15);">
+                    <!-- BG graphic: wrench -->
+                    <svg class="grp-bg-graphic" viewBox="0 0 300 300" fill="none">
+                        <g opacity="0.07">
+                            <path d="M190 60c-8-12-22-20-38-20-26 0-47 21-47 47 0 14 6 26 16 35l-72 72c-5 5-5 13 0 18l30 30c5 5 13 5 18 0l72-72c9 10 21 16 35 16 26 0 47-21 47-47 0-16-8-30-20-38l-26 26c-5 5-13 5-18 0l-21-21c-5-5-5-13 0-18l26-26z"
+                                  stroke="#a855f7" stroke-width="8" stroke-linejoin="round"/>
+                            <path d="M215 115l20-20c5-5 13-5 18 0l21 21c5 5 5 13 0 18l-20 20"
+                                  stroke="#a855f7" stroke-width="6" stroke-linejoin="round" fill="none"/>
+                            <circle cx="102" cy="198" r="8" fill="#a855f7" opacity="0.4"/>
+                            <circle cx="102" cy="198" r="4" fill="rgba(168,85,247,0.2)"/>
+                        </g>
+                    </svg>
+                    <div class="flex items-center gap-3 mb-5">
+                        <span class="grp-icon" style="background:rgba(168,85,247,0.15);color:#a855f7;">
+                            <i class="fas fa-wrench"></i>
+                        </span>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Инструментальные</h3>
+                            <p class="text-xs text-white/40 uppercase tracking-wider">Для штампов, резки и пресс-форм</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Х12МФ -->
+                        <div class="steel-card">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="steel-grade">Х12МФ</span>
+                            </div>
+                            <p class="steel-desc">Штамповая сталь с феноменальной износостойкостью</p>
+                            <div class="steel-history">
+                                <div class="hist-title"><i class="fas fa-book-open" style="font-size:0.55rem;color:#a855f7;"></i><span style="color:#a855f7;">История стали</span></div>
+                                Разработана в СССР в 1940–1950-х годах как штамповая сталь для холодного деформирования. Высокое содержание хрома (12%) и карбидов ванадия с молибденом обеспечивают исключительную износостойкость. Широко применялась на оборонных предприятиях.
+                            </div>
+                            <div class="steel-body">
+                                <div class="el-row">
+                                    <div class="el-block"><span class="el-symbol" style="color:#a855f7;">C</span><span class="el-pct">1.5%</span></div>
+                                    <div class="el-block"><span class="el-symbol" style="color:#a855f7;">Cr</span><span class="el-pct">12%</span></div>
+                                    <div class="el-block"><span class="el-symbol" style="color:#a855f7;">Mo</span><span class="el-pct">0.5%</span></div>
+                                    <div class="el-block"><span class="el-symbol" style="color:#a855f7;">V</span><span class="el-pct">0.4%</span></div>
+                                </div>
+                                <div class="prop-row">
+                                    <div class="prop-item">
+                                        <span class="prop-icon-prop" style="background:rgba(168,85,247,0.1);color:#a855f7;"><i class="fas fa-temperature-high"></i></span>
+                                        <span class="prop-value" style="color:#a855f7;">1340°C</span>
+                                    </div>
+                                    <div class="prop-item">
+                                        <span class="prop-icon-prop" style="background:rgba(168,85,247,0.1);color:#a855f7;"><i class="fas fa-gear"></i></span>
+                                        <span class="prop-value" style="color:#94a3b8;">Штампы, матрицы, пуансоны</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Р6М5 -->
+                        <div class="steel-card">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="steel-grade">Р6М5</span>
+                            </div>
+                            <p class="steel-desc">Быстрорежущая. Красностойкость до +600°C при резании</p>
+                            <div class="steel-history">
+                                <div class="hist-title"><i class="fas fa-book-open" style="font-size:0.55rem;color:#a855f7;"></i><span style="color:#a855f7;">История стали</span></div>
+                                Разработана в СССР в 1960-х как экономичная альтернатива быстрорежущим сталям с высоким содержанием вольфрама (Р18). Снижение W с 18% до 6% и добавление Mo (5%) позволило сохранить красностойкость при меньшей себестоимости. Стала основной быстрорежущей сталью в СССР.
+                            </div>
+                            <div class="steel-body">
+                                <div class="el-row">
+                                    <div class="el-block"><span class="el-symbol" style="color:#a855f7;">W</span><span class="el-pct">6%</span></div>
+                                    <div class="el-block"><span class="el-symbol" style="color:#a855f7;">Mo</span><span class="el-pct">5%</span></div>
+                                    <div class="el-block"><span class="el-symbol" style="color:#a855f7;">Cr</span><span class="el-pct">4%</span></div>
+                                    <div class="el-block"><span class="el-symbol" style="color:#a855f7;">V</span><span class="el-pct">2%</span></div>
+                                </div>
+                                <div class="prop-row">
+                                    <div class="prop-item">
+                                        <span class="prop-icon-prop" style="background:rgba(168,85,247,0.1);color:#a855f7;"><i class="fas fa-temperature-high"></i></span>
+                                        <span class="prop-value" style="color:#a855f7;">1380°C</span>
+                                    </div>
+                                    <div class="prop-item">
+                                        <span class="prop-icon-prop" style="background:rgba(168,85,247,0.1);color:#a855f7;"><i class="fas fa-hammer"></i></span>
+                                        <span class="prop-value" style="color:#94a3b8;">Сверла, фрезы, плашки, метчики</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== GROUP 4: Конструкционные ===== -->
+                <div class="grade-group bg-pat-struct" data-aos="fade-up" data-aos-delay="300" style="background:linear-gradient(135deg, rgba(15,23,42,0.6), rgba(30,58,95,0.35));border:1px solid rgba(148,163,184,0.1);">
+                    <!-- BG graphic: bridge truss -->
+                    <svg class="grp-bg-graphic" viewBox="0 0 300 200" fill="none">
+                        <g stroke="#94a3b8" stroke-width="0.8" opacity="0.06">
+                            <line x1="20" y1="170" x2="280" y2="170"/>
+                            <line x1="20" y1="170" x2="20" y2="30"/>
+                            <line x1="280" y1="170" x2="280" y2="30"/>
+                            <line x1="20" y1="30" x2="280" y2="30"/>
+                            <line x1="20" y1="100" x2="85" y2="30"/>
+                            <line x1="85" y1="30" x2="150" y2="100"/>
+                            <line x1="150" y1="100" x2="215" y2="30"/>
+                            <line x1="215" y1="30" x2="280" y2="100"/>
+                            <line x1="20" y1="100" x2="85" y2="170"/>
+                            <line x1="85" y1="170" x2="150" y2="100"/>
+                            <line x1="150" y1="100" x2="215" y2="170"/>
+                            <line x1="215" y1="170" x2="280" y2="100"/>
+                        </g>
+                    </svg>
+                    <div class="flex items-center gap-3 mb-5">
+                        <span class="grp-icon" style="background:rgba(148,163,184,0.15);color:#94a3b8;">
+                            <i class="fas fa-building"></i>
+                        </span>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Конструкционные</h3>
+                            <p class="text-xs text-white/40 uppercase tracking-wider">Высокопрочные для машиностроения</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- 40Х -->
+                        <div class="steel-card">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="steel-grade">40Х</span>
+                            </div>
+                            <p class="steel-desc">Прочность до 1000 МПа, высокая ударная вязкость</p>
+                            <div class="steel-history">
+                                <div class="hist-title"><i class="fas fa-book-open" style="font-size:0.55rem;color:#94a3b8;"></i><span style="color:#94a3b8;">История стали</span></div>
+                                Одна из самых массовых конструкционных сталей. Разработана в начале XX века. В СССР стандартизирована в 1930-х в рамках программы индустриализации. Применялась при производстве танков Т-34 и другой военной техники.
+                            </div>
+                            <div class="steel-body">
+                                <div class="el-row">
+                                    <div class="el-block"><span class="el-symbol" style="color:#94a3b8;">C</span><span class="el-pct">0.40%</span></div>
+                                    <div class="el-block"><span class="el-symbol" style="color:#94a3b8;">Cr</span><span class="el-pct">1.0%</span></div>
+                                    <div class="el-block"><span class="el-symbol" style="color:#94a3b8;">Mn</span><span class="el-pct">0.6%</span></div>
+                                </div>
+                                <div class="prop-row">
+                                    <div class="prop-item">
+                                        <span class="prop-icon-prop" style="background:rgba(148,163,184,0.1);color:#94a3b8;"><i class="fas fa-temperature-high"></i></span>
+                                        <span class="prop-value" style="color:#94a3b8;">1470°C</span>
+                                    </div>
+                                    <div class="prop-item">
+                                        <span class="prop-icon-prop" style="background:rgba(148,163,184,0.1);color:#94a3b8;"><i class="fas fa-gear"></i></span>
+                                        <span class="prop-value" style="color:#94a3b8;">Валы, оси, шатуны</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ШХ15 -->
+                        <div class="steel-card">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="steel-grade">ШХ15</span>
+                            </div>
+                            <p class="steel-desc">Шарикоподшипниковая, строгий контроль включений</p>
+                            <div class="steel-history">
+                                <div class="hist-title"><i class="fas fa-book-open" style="font-size:0.55rem;color:#94a3b8;"></i><span style="color:#94a3b8;">История стали</span></div>
+                                Разработана в СССР в 1930-х годах специально для подшипниковой промышленности. Первая отечественная подшипниковая сталь, созданная для замещения импортных аналогов. Отличается строжайшим контролем неметаллических включений.
+                            </div>
+                            <div class="steel-body">
+                                <div class="el-row">
+                                    <div class="el-block"><span class="el-symbol" style="color:#94a3b8;">C</span><span class="el-pct">1.0%</span></div>
+                                    <div class="el-block"><span class="el-symbol" style="color:#94a3b8;">Cr</span><span class="el-pct">1.5%</span></div>
+                                    <div class="el-block"><span class="el-symbol" style="color:#94a3b8;">Mn</span><span class="el-pct">0.3%</span></div>
+                                </div>
+                                <div class="prop-row">
+                                    <div class="prop-item">
+                                        <span class="prop-icon-prop" style="background:rgba(148,163,184,0.1);color:#94a3b8;"><i class="fas fa-temperature-high"></i></span>
+                                        <span class="prop-value" style="color:#94a3b8;">1440°C</span>
+                                    </div>
+                                    <div class="prop-item">
+                                        <span class="prop-icon-prop" style="background:rgba(148,163,184,0.1);color:#94a3b8;"><i class="fas fa-cogs"></i></span>
+                                        <span class="prop-value" style="color:#94a3b8;">Подшипники, пружины</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PRODUCTS ========== -->
+    <section id="products" class="py-24 sm:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-title mb-4">Каталог продукции</h2>
+                <p class="section-subtitle mx-auto">
+                    Широкий спектр специальных сталей и сплавов для промышленных задач любой сложности
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Product 1 -->
+                <div class="product-card" data-aos="fade-up">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5" style="background:rgba(255,107,53,0.1);color:#ff6b35;font-size:1.5rem;">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-3" style="color:#f1f5f9;">Листовая спецсталь</h3>
+                    <p class="text-sm leading-relaxed mb-4" style="color:#64748b;">
+                        Горячекатаные и холоднокатаные листы из легированных марок стали. Толщина от 0.5 до 200 мм.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:rgba(255,255,255,0.05);color:#94a3b8;border:1px solid rgba(255,255,255,0.06);">12Х18Н10Т</span>
+                        <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:rgba(255,255,255,0.05);color:#94a3b8;border:1px solid rgba(255,255,255,0.06);">10ХСНД</span>
+                        <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:rgba(255,255,255,0.05);color:#94a3b8;border:1px solid rgba(255,255,255,0.06);">09Г2С</span>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5" style="background:rgba(255,107,53,0.1);color:#ff6b35;font-size:1.5rem;">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-3" style="color:#f1f5f9;">Легированные стали</h3>
+                    <p class="text-sm leading-relaxed mb-4" style="color:#64748b;">
+                        Конструкционные, инструментальные, жаропрочные и износостойкие легированные марки.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:rgba(255,255,255,0.05);color:#94a3b8;border:1px solid rgba(255,255,255,0.06);">40Х</span>
+                        <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:rgba(255,255,255,0.05);color:#94a3b8;border:1px solid rgba(255,255,255,0.06);">30ХГСА</span>
+                        <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:rgba(255,255,255,0.05);color:#94a3b8;border:1px solid rgba(255,255,255,0.06);">65Г</span>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5" style="background:rgba(255,107,53,0.1);color:#ff6b35;font-size:1.5rem;">
+                        <i class="fas fa-shield"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-3" style="color:#f1f5f9;">Нержавеющие сплавы</h3>
+                    <p class="text-sm leading-relaxed mb-4" style="color:#64748b;">
+                        Коррозионностойкие стали и жаропрочные сплавы для агрессивных сред и высоких температур.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:rgba(255,255,255,0.05);color:#94a3b8;border:1px solid rgba(255,255,255,0.06);">08Х18Н10Т</span>
+                        <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:rgba(255,255,255,0.05);color:#94a3b8;border:1px solid rgba(255,255,255,0.06);">12Х18Н9</span>
+                        <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:rgba(255,255,255,0.05);color:#94a3b8;border:1px solid rgba(255,255,255,0.06);">20Х23Н18</span>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5" style="background:rgba(255,107,53,0.1);color:#ff6b35;font-size:1.5rem;">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-3" style="color:#f1f5f9;">Редкие марки</h3>
+                    <p class="text-sm leading-relaxed mb-4" style="color:#64748b;">
+                        Специальные и редкие марки стали, прецизионные сплавы, быстрорежущие стали под заказ.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:rgba(255,255,255,0.05);color:#94a3b8;border:1px solid rgba(255,255,255,0.06);">Р6М5</span>
+                        <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:rgba(255,255,255,0.05);color:#94a3b8;border:1px solid rgba(255,255,255,0.06);">ХВГ</span>
+                        <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:rgba(255,255,255,0.05);color:#94a3b8;border:1px solid rgba(255,255,255,0.06);">38Х2МЮА</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== STEEL GRADES MARQUEE ========== -->
+    <section class="py-10 overflow-hidden" style="border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.04);background:rgba(255,255,255,0.02);">
+        <div class="marquee-wrap">
+            <div class="marquee-track">
+                <div class="flex items-center gap-3 text-sm font-mono font-medium" style="color:rgba(148,163,184,0.3);">
+                    <span>12Х18Н10Т</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>40Х</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>30ХГСА</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>09Г2С</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>08Х18Н10Т</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>Р6М5</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>65Г</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>38Х2МЮА</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>10ХСНД</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>20Х23Н18</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                </div>
+                <div class="flex items-center gap-3 text-sm font-mono font-medium" style="color:rgba(148,163,184,0.3);">
+                    <span>12Х18Н10Т</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>40Х</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>30ХГСА</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>09Г2С</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>08Х18Н10Т</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>Р6М5</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>65Г</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>38Х2МЮА</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>10ХСНД</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>20Х23Н18</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== ADVANTAGES ========== -->
+    <section id="advantages" class="py-24 sm:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-title mb-4">Почему выбирают нас</h2>
+                <p class="section-subtitle mx-auto">
+                    Работаем с редкими позициями, где другие ищут отговорки
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-card p-8" data-aos="fade-up">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5" style="background:rgba(255,107,53,0.1);color:#ff6b35;font-size:1.5rem;">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-3" style="color:#f1f5f9;">Любая редкая марка</h3>
+                    <p class="text-sm leading-relaxed" style="color:#64748b;">
+                        Найдём и поставим даже самые труднодоступные позиции. Работаем со всеми категориями легированных и специальных сталей.
+                    </p>
+                </div>
+
+                <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5" style="background:rgba(255,107,53,0.1);color:#ff6b35;font-size:1.5rem;">
+                        <i class="fas fa-file-certificate"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-3" style="color:#f1f5f9;">Качество подтверждено</h3>
+                    <p class="text-sm leading-relaxed" style="color:#64748b;">
+                        Сертификаты соответствия, паспорта качества, входной контроль и лабораторные испытания на каждой партии.
+                    </p>
+                </div>
+
+                <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5" style="background:rgba(255,107,53,0.1);color:#ff6b35;font-size:1.5rem;">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-3" style="color:#f1f5f9;">От 1 кг до 100+ тонн</h3>
+                    <p class="text-sm leading-relaxed" style="color:#64748b;">
+                        Любой объём — от пробной партии до масштабных промышленных поставок. Гибкие условия отгрузки и доставки.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== COVERAGE MAP ========== -->
+    <section id="coverage" class="py-24 sm:py-32 relative overflow-hidden" style="background:rgba(6,11,21,0.3);">
+        <!-- Background map -->
+        <div class="coverage-map-bg" aria-hidden="true">
+            <svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+                <defs>
+                    <radialGradient id="cityGlowBg" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#ff6b35" stop-opacity="0.15"/>
+                        <stop offset="100%" stop-color="#ff6b35" stop-opacity="0"/>
+                    </radialGradient>
+                </defs>
+
+                <!-- Simplified Russia outline -->
+                <path d="M90 180 Q100 150 130 140 L160 130 Q190 120 220 125 L260 120 Q290 110 320 115
+                         L360 105 Q390 95 420 100 L460 95 Q490 90 520 100 L560 95
+                         Q590 85 620 90 L660 85 Q690 80 720 90 L760 85 Q790 80 820 95
+                         L850 100 Q860 110 855 130 L850 150 Q845 170 830 180
+                         L800 190 Q780 200 760 195 L730 205 Q700 215 670 210
+                         L640 220 Q610 230 580 225 L550 235 Q520 245 490 240
+                         L460 250 Q430 255 400 250 L370 260 Q340 265 310 255
+                         L280 265 Q250 270 220 260 L190 255 Q160 240 140 230
+                         L110 220 Q95 210 90 195 Z"
+                      fill="rgba(255,255,255,0.015)" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+
+                <!-- City glow dots -->
+                <circle cx="180" cy="140" r="40" fill="url(#cityGlowBg)"/>
+
+                <!-- Lines from SPb to cities -->
+                <g stroke="rgba(255,107,53,0.06)" stroke-width="1.5" stroke-dasharray="4 4" fill="none">
+                    <path d="M180 140 Q220 150 260 170"/>
+                    <path d="M180 140 Q250 155 320 175"/>
+                    <path d="M180 140 Q300 160 400 185"/>
+                    <path d="M180 140 Q380 170 520 190"/>
+                    <path d="M180 140 Q420 170 570 195"/>
+                    <path d="M180 140 Q550 180 740 230"/>
+                    <path d="M180 140 Q220 190 260 240"/>
+                </g>
+
+                <!-- SPb main point -->
+                <circle cx="180" cy="140" r="6" fill="#ff6b35" opacity="0.4"/>
+
+                <!-- Cities -->
+                <g fill="rgba(255,255,255,0.15)">
+                    <circle cx="260" cy="170" r="3"/>
+                    <circle cx="320" cy="175" r="2.5"/>
+                    <circle cx="400" cy="185" r="3"/>
+                    <circle cx="520" cy="190" r="2.5"/>
+                    <circle cx="570" cy="195" r="2.5"/>
+                    <circle cx="740" cy="230" r="3"/>
+                    <circle cx="260" cy="240" r="2.5"/>
+                </g>
+            </svg>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-14" data-aos="fade-up">
+                <h2 class="section-title mb-4">География поставок</h2>
+                <p class="section-subtitle mx-auto">
+                    Доставляем редкие и легированные стали в любую точку России
+                </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4" data-aos="fade-up" data-aos-duration="800">
+                <div class="coverage-card">
+                    <div class="cov-icon"><i class="fas fa-city"></i></div>
+                    <div class="cov-num">50+</div>
+                    <div class="cov-label">городов доставки</div>
+                </div>
+                <div class="coverage-card">
+                    <div class="cov-icon"><i class="fas fa-truck-fast"></i></div>
+                    <div class="cov-num">от 2 дней</div>
+                    <div class="cov-label">средний срок в РФ</div>
+                </div>
+                <div class="coverage-card">
+                    <div class="cov-icon"><i class="fas fa-map-pin"></i></div>
+                    <div class="cov-num">СПб → Вл-к</div>
+                    <div class="cov-label">от Калининграда до Камчатки</div>
+                </div>
+                <div class="coverage-card">
+                    <div class="cov-icon"><i class="fas fa-warehouse"></i></div>
+                    <div class="cov-num">4 склада</div>
+                    <div class="cov-label">в разных регионах РФ</div>
+                </div>
+            </div>
+
+            <div class="text-center mt-10" data-aos="fade-up">
+                <a href="#contacts" class="btn-cta text-white px-7 py-3.5 rounded-xl font-semibold text-sm no-underline inline-flex items-center gap-3">
+                    <i class="fas fa-paper-plane"></i>
+                    Оформить заявку на доставку
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTACTS ========== -->
+    <section id="contacts" class="py-24 sm:py-32 relative overflow-hidden" style="background:#0d1117;">
+        <!-- Background image with cinematic overlay -->
+        <div class="contacts-bg"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-title mb-4">Свяжитесь с нами</h2>
+                <p class="section-subtitle mx-auto">
+                    Отправьте заявку — мы подберём нужную марку стали и подготовим лучшее коммерческое предложение
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-5 gap-10 items-start" data-aos="fade-up">
+                <!-- Form -->
+                <div class="lg:col-span-3 glass-card p-8 sm:p-10">
+                    <form id="contactForm" onsubmit="handleForm(event)">
+                        <div class="grid sm:grid-cols-2 gap-5 mb-5">
+                            <div>
+                                <label class="block text-sm font-medium mb-2" style="color:#94a3b8;">Ваше имя *</label>
+                                <input type="text" required placeholder="Иван Иванов" class="form-input">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2" style="color:#94a3b8;">Телефон *</label>
+                                <input type="tel" required placeholder="+7 (999) 123-45-67" class="form-input">
+                            </div>
+                        </div>
+                        <div class="mb-5">
+                            <label class="block text-sm font-medium mb-2" style="color:#94a3b8;">Email</label>
+                            <input type="email" placeholder="ivanov@example.com" class="form-input">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium mb-2" style="color:#94a3b8;">Что нужно? *</label>
+                            <textarea rows="4" required placeholder="Укажите марку стали, размеры, объём партии..." class="form-input resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="btn-cta text-white w-full py-4 rounded-xl font-semibold text-base inline-flex items-center justify-center gap-3 no-underline" style="box-shadow:0 4px 20px rgba(255,107,53,0.25);">
+                            <i class="fas fa-paper-plane"></i>
+                            Отправить заявку
+                        </button>
+                        <p class="text-xs text-center mt-4" style="color:rgba(148,163,184,0.4);">
+                            Нажимая «Отправить», вы соглашаетесь на обработку персональных данных
+                        </p>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="lg:col-span-2 space-y-5">
+                    <div class="glass-card p-6 sm:p-8">
+                        <h3 class="text-base font-bold mb-5" style="color:#f1f5f9;">Контакты</h3>
+                        <div class="space-y-4 text-sm">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);color:#ff6b35;">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium" style="color:#e2e8f0;">Телефон</div>
+                                    <a href="tel:+78129222158" class="no-underline transition-colors" style="color:#94a3b8;" onmouseover="this.style.color='#ff6b35'" onmouseout="this.style.color='#94a3b8'">+7 (812) 922-21-58</a>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);color:#ff6b35;">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium" style="color:#e2e8f0;">Email</div>
+                                    <a href="mailto:info@metspetsstal.ru" class="no-underline transition-colors" style="color:#64748b;" onmouseover="this.style.color='#ff6b35'" onmouseout="this.style.color='#64748b'">info@metspetsstal.ru</a>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);color:#ff6b35;">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium" style="color:#e2e8f0;">Адрес</div>
+                                    <div style="color:#64748b;">г. Москва, ул. Металлургов, д. 10</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 sm:p-8">
+                        <h3 class="text-base font-bold mb-5" style="color:#f1f5f9;">Быстрая связь</h3>
+                        <div class="space-y-3">
+                            <a href="https://wa.me/78129222158?text=Макс,%20здравствуйте!" target="_blank" rel="noopener" class="flex items-center gap-3 px-5 py-3.5 rounded-xl font-medium no-underline transition-all duration-300" style="background:rgba(83,62,238,0.08);color:#8b7cf7;border:1px solid rgba(83,62,238,0.15);" onmouseover="this.style.background='rgba(83,62,238,0.15)'" onmouseout="this.style.background='rgba(83,62,238,0.08)'">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="22" height="22" style="display:block;flex-shrink:0;">
+                                    <defs>
+                                        <linearGradient id="maxC1"><stop offset="0" stop-color="#4cf"/><stop offset=".662" stop-color="#53e"/><stop offset="1" stop-color="#93d"/></linearGradient>
+                                        <linearGradient id="maxC2" x1="117.847" x2="1000" y1="760.536" y2="500" gradientUnits="userSpaceOnUse" href="#maxC1"/>
+                                        <radialGradient id="maxC3" cx="-87.392" cy="1166.116" r="500" fx="-87.392" fy="1166.116" gradientTransform="rotate(51.356 1551.478 559.3)scale(2.427 1)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#00f" stop-opacity="0.3"/><stop offset="1" stop-opacity="0"/></radialGradient>
+                                    </defs>
+                                    <rect width="1000" height="1000" fill="url(#maxC2)" ry="249.681"/>
+                                    <rect width="1000" height="1000" fill="url(#maxC3)" ry="249.681"/>
+                                    <path fill="#fff" fill-rule="evenodd" d="M508.211 878.328c-75.007 0-109.864-10.95-170.453-54.75-38.325 49.275-159.686 87.783-164.979 21.9 0-49.456-10.95-91.248-23.36-136.873-14.782-56.21-31.572-118.807-31.572-209.508 0-216.626 177.754-379.597 388.357-379.597 210.785 0 375.947 171.001 375.947 381.604.707 207.346-166.595 376.118-373.94 377.224m3.103-571.585c-102.564-5.292-182.499 65.7-200.201 177.024-14.6 92.162 11.315 204.398 33.397 210.238 10.585 2.555 37.23-18.98 53.837-35.587a189.8 189.8 0 0 0 92.71 33.032c106.273 5.112 197.08-75.794 204.215-181.95 4.154-106.382-77.67-196.486-183.958-202.574Z" clip-rule="evenodd"/>
+                                </svg>
+                                MAX — написать Максу
+                            </a>
+                            <a href="https://wa.me/78129222158" target="_blank" rel="noopener" class="flex items-center gap-3 px-5 py-3.5 rounded-xl font-medium no-underline transition-all duration-300" style="background:rgba(37,211,102,0.1);color:#25D366;border:1px solid rgba(37,211,102,0.2);" onmouseover="this.style.background='rgba(37,211,102,0.2)'" onmouseout="this.style.background='rgba(37,211,102,0.1)'">
+                                <i class="fab fa-whatsapp" style="font-size:1.25rem;"></i>
+                                WhatsApp
+                            </a>
+                            <a href="https://t.me/metspetsstal" target="_blank" rel="noopener" class="flex items-center gap-3 px-5 py-3.5 rounded-xl font-medium no-underline transition-all duration-300" style="background:rgba(0,136,204,0.1);color:#0088cc;border:1px solid rgba(0,136,204,0.2);" onmouseover="this.style.background='rgba(0,136,204,0.2)'" onmouseout="this.style.background='rgba(0,136,204,0.1)'">
+                                <i class="fab fa-telegram-plane" style="font-size:1.25rem;"></i>
+                                Telegram
+                            </a>
+                            <a href="https://vk.com/metspetsstal" target="_blank" rel="noopener" class="flex items-center gap-3 px-5 py-3.5 rounded-xl font-medium no-underline transition-all duration-300" style="background:rgba(74,118,168,0.1);color:#6d8fc6;border:1px solid rgba(74,118,168,0.2);" onmouseover="this.style.background='rgba(74,118,168,0.2)'" onmouseout="this.style.background='rgba(74,118,168,0.1)'">
+                                <i class="fab fa-vk" style="font-size:1.25rem;"></i>
+                                VKontakte
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer style="background:#060b15;border-top:1px solid rgba(255,255,255,0.04);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-3 font-bold text-lg" style="color:#f1f5f9;">
+                    <svg width="28" height="28" viewBox="0 0 36 36" fill="none">
+                        <rect x="2" y="2" width="32" height="32" rx="8" stroke="#ff6b35" stroke-width="2.5" fill="none"/>
+                        <path d="M10 26V14l8-6 8 6v12H10z" stroke="#ff6b35" stroke-width="2" fill="none" stroke-linejoin="round"/>
+                        <path d="M14 26V18h8v8" stroke="#ff6b35" stroke-width="2" fill="none" stroke-linejoin="round"/>
+                    </svg>
+                    МетСпецСталь
+                </div>
+                <div class="text-sm text-center md:text-left" style="color:rgba(148,163,184,0.5);">
+                    © 2026 МетСпецСталь. Все права защищены. • Редкие и легированные стали
+                </div>
+                <div class="flex gap-4 text-sm">
+                    <a href="#hero" class="no-underline transition-colors" style="color:rgba(148,163,184,0.4);" onmouseover="this.style.color='#ff6b35'" onmouseout="this.style.color='rgba(148,163,184,0.4)'">Наверх</a>
+                    <a href="#products" class="no-underline transition-colors" style="color:rgba(148,163,184,0.4);" onmouseover="this.style.color='#ff6b35'" onmouseout="this.style.color='rgba(148,163,184,0.4)'">Продукция</a>
+                    <a href="#contacts" class="no-underline transition-colors" style="color:rgba(148,163,184,0.4);" onmouseover="this.style.color='#ff6b35'" onmouseout="this.style.color='rgba(148,163,184,0.4)'">Контакты</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== SCRIPTS ========== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({ duration: 600, once: true, offset: 80 });
+
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('nav-scrolled', window.scrollY > 100);
+        });
+
+        function handleForm(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const original = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+            btn.disabled = true;
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check-circle"></i> Заявка отправлена!';
+                btn.style.background = 'linear-gradient(135deg, #059669, #10b981)';
+                e.target.reset();
+                setTimeout(() => {
+                    btn.innerHTML = original;
+                    btn.style.background = '';
+                    btn.disabled = false;
+                }, 3000);
+            }, 1500);
+        }
+
+        // Upload form handler
+        function handleUploadForm(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button') || e.target;
+            const original = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+            btn.disabled = true;
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check-circle"></i> Запрос отправлен!';
+                btn.style.background = 'linear-gradient(135deg, #059669, #10b981)';
+                setTimeout(() => {
+                    btn.innerHTML = original;
+                    btn.style.background = '';
+                    btn.disabled = false;
+                }, 3000);
+            }, 1500);
+        }
+
+        // Drag & drop
+        const dropZone = document.getElementById('dropZone');
+        if (dropZone) {
+            ['dragenter', 'dragover'].forEach(evt => {
+                dropZone.addEventListener(evt, e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+            });
+            ['dragleave', 'drop'].forEach(evt => {
+                dropZone.addEventListener(evt, e => { e.preventDefault(); dropZone.classList.remove('dragover'); });
+            });
+            dropZone.addEventListener('drop', e => {
+                e.preventDefault();
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    dropZone.querySelector('.upload-title').textContent = 'Файл загружен: ' + files[0].name;
+                    dropZone.querySelector('.upload-hint').innerHTML = 'Ещё файл? <span class="upload-link" onclick="document.getElementById(\'fileInput\').click()">выберите</span>';
+                    document.getElementById('fileInput').files = files;
+                }
+            });
+            document.getElementById('fileInput').addEventListener('change', function() {
+                if (this.files.length > 0) {
+                    dropZone.querySelector('.upload-title').textContent = 'Файл загружен: ' + this.files[0].name;
+                    dropZone.querySelector('.upload-hint').innerHTML = 'Ещё файл? <span class="upload-link" onclick="document.getElementById(\'fileInput\').click()">выберите</span>';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

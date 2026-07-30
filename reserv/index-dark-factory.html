@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МетСпецСталь — редкие и легированные стали</title>
+    <meta name="description" content="Поставка редких марок стали, легированных и специальных сплавов.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        forge: { 50: '#fafafa', 100: '#f5f5f5', 200: '#e5e5e5', 300: '#d4d4d4', 400: '#a3a3a3', 500: '#6b7280', 600: '#4b5563', 700: '#1f2937', 800: '#121820', 900: '#0d1117' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; color: #d4d4d4; background: #0d1117; }
+        section[id] { scroll-margin-top: 100px; }
+
+        /* Navigation */
+        .nav-scrolled { background: rgba(13,17,23,0.95) !important; backdrop-filter: blur(14px); box-shadow: 0 1px 0 rgba(220,38,38,0.2); }
+        .nav-link { position: relative; color: #9ca3af; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.8rem; transition: color 0.3s; }
+        .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: #dc2626; transition: width 0.3s; }
+        .nav-link:hover { color: #dc2626; }
+        .nav-link:hover::after { width: 100%; }
+
+        /* Hero background - industrial */
+        .hero-bg {
+            background:
+                radial-gradient(ellipse 60% 50% at 30% 60%, rgba(220,38,38,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse 40% 40% at 80% 30%, rgba(251,146,60,0.04) 0%, transparent 40%),
+                linear-gradient(180deg, #0d1117 0%, #121820 40%, #0d1117 100%);
+        }
+
+        /* Glow effects */
+        .btn-cta { background: linear-gradient(135deg, #dc2626, #b91c1c); transition: all 0.3s; text-transform: uppercase; letter-spacing: 0.03em; }
+        .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(220,38,38,0.3); }
+        .btn-outline { border: 1.5px solid rgba(220,38,38,0.3); color: #ef4444; transition: all 0.3s; text-transform: uppercase; letter-spacing: 0.03em; font-size: 0.85rem; }
+        .btn-outline:hover { border-color: #dc2626; background: rgba(220,38,38,0.08); color: #dc2626; }
+
+        /* Section title - uppercase industrial */
+        .section-title { font-size: 2.25rem; font-weight: 800; color: #f5f5f5; line-height: 1.15; text-transform: uppercase; letter-spacing: 0.02em; }
+        .section-subtitle { font-size: 1rem; color: #6b7280; max-width: 600px; line-height: 1.8; }
+
+        /* Product cards - industrial border style */
+        .product-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 4px;
+            padding: 2rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .product-card::before {
+            content: '';
+            position: absolute; top: -1px; left: 20%; right: 20%;
+            height: 2px; background: #dc2626;
+            transform: scaleX(0); transition: transform 0.3s;
+        }
+        .product-card:hover { border-color: rgba(220,38,38,0.2); background: rgba(220,38,38,0.03); }
+        .product-card:hover::before { transform: scaleX(1); }
+
+        .product-card .grade-tag {
+            font-size: 0.7rem; padding: 0.2rem 0.6rem;
+            background: rgba(255,255,255,0.04);
+            color: #6b7280;
+            border: 1px solid rgba(255,255,255,0.06);
+            font-family: monospace;
+            border-radius: 2px;
+        }
+
+        /* Glass card */
+        .glass-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; transition: all 0.3s; }
+        .glass-card:hover { background: rgba(255,255,255,0.035); border-color: rgba(220,38,38,0.12); }
+
+        /* Form */
+        .form-input {
+            width: 100%; padding: 0.875rem 1.25rem;
+            border: 1px solid rgba(255,255,255,0.08); border-radius: 4px;
+            font-family: inherit; font-size: 0.95rem;
+            transition: all 0.3s;
+            background: rgba(255,255,255,0.03);
+            color: #d4d4d4;
+        }
+        .form-input:focus { outline: none; border-color: #dc2626; background: rgba(255,255,255,0.05); }
+        .form-input::placeholder { color: rgba(107,114,128,0.4); }
+
+        /* Marquee */
+        .marquee-track { display: flex; gap: 2.5rem; animation: scrollGrades 35s linear infinite; width: max-content; }
+        .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+        @keyframes scrollGrades { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* Scroll indicator */
+        .scroll-indicator { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: rgba(107,114,128,0.3); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+
+        /* Truss decoration */
+        .truss-line { stroke: rgba(255,255,255,0.03); stroke-width: 1; }
+
+        @media (max-width: 768px) {
+            .section-title { font-size: 1.5rem; }
+            .product-card { padding: 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="#hero" class="flex items-center gap-3 font-bold text-lg no-underline tracking-tight" style="color:#f5f5f5;">
+                    <!-- Angular logo -->
+                    <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+                        <path d="M17 2L4 9v8c0 8.5 5.5 16.5 13 19 7.5-2.5 13-10.5 13-19V9L17 2z" stroke="#dc2626" stroke-width="1.8" fill="none"/>
+                        <path d="M12 20l5-12 5 12" stroke="#dc2626" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+                        <path d="M13.5 20h7" stroke="#dc2626" stroke-width="1.5" fill="none"/>
+                    </svg>
+                    <span>МетСпецСталь</span>
+                </a>
+
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#products" class="nav-link no-underline">Продукция</a>
+                    <a href="#advantages" class="nav-link no-underline">Преимущества</a>
+                    <a href="#contacts" class="nav-link no-underline">Контакты</a>
+                    <a href="tel:+74951234567" class="flex items-center gap-2 font-semibold text-sm no-underline uppercase tracking-wider" style="color:#dc2626;">
+                        <i class="fas fa-phone-alt text-xs"></i> +7 (495) 123-45-67
+                    </a>
+                </div>
+
+                <a href="#contacts" class="md:hidden btn-cta text-white px-4 py-2 text-sm font-semibold no-underline" style="border-radius:2px;">
+                    Связь
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO ========== -->
+    <section id="hero" class="hero-bg min-h-screen flex items-center relative overflow-hidden pt-24">
+        <!-- Industrial truss lines -->
+        <svg class="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none">
+            <line x1="0%" y1="20%" x2="100%" y2="20%" class="truss-line"/>
+            <line x1="0%" y1="40%" x2="100%" y2="40%" class="truss-line"/>
+            <line x1="0%" y1="60%" x2="100%" y2="60%" class="truss-line"/>
+            <line x1="0%" y1="80%" x2="100%" y2="80%" class="truss-line"/>
+            <line x1="10%" y1="0%" x2="10%" y2="100%" class="truss-line"/>
+            <line x1="30%" y1="0%" x2="30%" y2="100%" class="truss-line"/>
+            <line x1="50%" y1="0%" x2="50%" y2="100%" class="truss-line"/>
+            <line x1="70%" y1="0%" x2="70%" y2="100%" class="truss-line"/>
+            <line x1="90%" y1="0%" x2="90%" y2="100%" class="truss-line"/>
+            <!-- Diagonal trusses -->
+            <line x1="10%" y1="20%" x2="30%" y2="40%" class="truss-line"/>
+            <line x1="30%" y1="20%" x2="10%" y2="40%" class="truss-line"/>
+            <line x1="50%" y1="40%" x2="70%" y2="60%" class="truss-line"/>
+            <line x1="70%" y1="40%" x2="50%" y2="60%" class="truss-line"/>
+            <line x1="30%" y1="60%" x2="50%" y2="80%" class="truss-line"/>
+            <line x1="50%" y1="60%" x2="30%" y2="80%" class="truss-line"/>
+            <line x1="70%" y1="20%" x2="90%" y2="40%" class="truss-line"/>
+            <line x1="90%" y1="20%" x2="70%" y2="40%" class="truss-line"/>
+        </svg>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <!-- Left: Text -->
+                <div data-aos="fade-up" data-aos-duration="800">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-semibold uppercase tracking-widest mb-6" style="background:rgba(220,38,38,0.1);color:#ef4444;border:1px solid rgba(220,38,38,0.2);border-radius:2px;">
+                        Прямые поставки от производителей
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 uppercase tracking-tight" style="color:#f5f5f5;">
+                        Редкие и&nbsp;легированные<br/>
+                        <span style="color:#dc2626;">стали</span>
+                    </h1>
+                    <p class="text-base sm:text-lg mb-8 leading-relaxed max-w-xl" style="color:#6b7280;">
+                        Поставляем специальные и редкие марки стали, легированные сплавы
+                        и листовой прокат с подтверждённым качеством.
+                        От килограмма до крупных партий.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#contacts" class="btn-cta text-white px-8 py-4 font-semibold text-sm no-underline inline-flex items-center gap-3" style="border-radius:2px;">
+                            <i class="fas fa-paper-plane"></i>
+                            Запросить цену
+                        </a>
+                        <a href="#products" class="btn-outline px-8 py-4 font-semibold no-underline inline-flex items-center gap-3" style="border-radius:2px;">
+                            <i class="fas fa-layer-group"></i>
+                            Каталог
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: SVG — Factory / Steel plant -->
+                <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150" class="flex justify-center">
+                    <svg viewBox="0 0 500 440" width="500" height="440" style="max-width:100%;height:auto;">
+                        <defs>
+                            <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#0d1117"/>
+                                <stop offset="40%" stop-color="#121820"/>
+                                <stop offset="100%" stop-color="#1a2332"/>
+                            </linearGradient>
+                            <linearGradient id="smokeGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+                                <stop offset="0%" stop-color="rgba(255,255,255,0.04)"/>
+                                <stop offset="100%" stop-color="rgba(255,255,255,0.01)"/>
+                            </linearGradient>
+                            <radialGradient id="furnaceGlow" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="#ef4444" stop-opacity="0.4"/>
+                                <stop offset="40%" stop-color="#dc2626" stop-opacity="0.1"/>
+                                <stop offset="100%" stop-color="#dc2626" stop-opacity="0"/>
+                            </radialGradient>
+                            <filter id="glowRed">
+                                <feGaussianBlur stdDeviation="3" result="blur"/>
+                                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                            </filter>
+                        </defs>
+
+                        <!-- Sky base -->
+                        <rect width="500" height="440" fill="url(#skyGrad)"/>
+
+                        <!-- Stars -->
+                        <g fill="rgba(255,255,255,0.15)">
+                            <circle cx="60" cy="30" r="1"/>
+                            <circle cx="140" cy="50" r="0.8"/>
+                            <circle cx="380" cy="25" r="1.2"/>
+                            <circle cx="450" cy="60" r="0.7"/>
+                            <circle cx="300" cy="35" r="0.9"/>
+                            <circle cx="30" cy="70" r="0.6"/>
+                            <circle cx="470" cy="40" r="0.8"/>
+                        </g>
+
+                        <!-- Distant factory silhouettes -->
+                        <g fill="rgba(255,255,255,0.02)">
+                            <rect x="20" y="240" width="120" height="200"/>
+                            <rect x="60" y="200" width="40" height="240"/>
+                            <rect x="360" y="260" width="140" height="180"/>
+                            <rect x="400" y="220" width="50" height="220"/>
+                        </g>
+
+                        <!-- Main factory building -->
+                        <rect x="120" y="200" width="260" height="240" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+
+                        <!-- Chimney 1 -->
+                        <rect x="160" y="100" width="20" height="100" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+                        <rect x="155" y="96" width="30" height="8" fill="rgba(255,255,255,0.05)"/>
+
+                        <!-- Chimney 2 (tall) -->
+                        <rect x="240" y="60" width="24" height="140" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+                        <rect x="235" y="56" width="34" height="8" fill="rgba(255,255,255,0.05)"/>
+
+                        <!-- Chimney 3 -->
+                        <rect x="320" y="130" width="18" height="70" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+                        <rect x="315" y="126" width="28" height="8" fill="rgba(255,255,255,0.05)"/>
+
+                        <!-- Smoke from chimneys -->
+                        <g opacity="0.3">
+                            <ellipse cx="170" cy="80" rx="15" ry="10" fill="rgba(255,255,255,0.04)"/>
+                            <ellipse cx="185" cy="65" rx="20" ry="12" fill="rgba(255,255,255,0.03)"/>
+                            <ellipse cx="200" cy="48" rx="18" ry="10" fill="rgba(255,255,255,0.02)"/>
+
+                            <ellipse cx="252" cy="40" rx="18" ry="12" fill="rgba(255,255,255,0.04)"/>
+                            <ellipse cx="270" cy="28" rx="22" ry="10" fill="rgba(255,255,255,0.03)"/>
+                            <ellipse cx="290" cy="18" rx="20" ry="8" fill="rgba(255,255,255,0.02)"/>
+
+                            <ellipse cx="329" cy="110" rx="12" ry="8" fill="rgba(255,255,255,0.04)"/>
+                            <ellipse cx="340" cy="95" rx="16" ry="10" fill="rgba(255,255,255,0.03)"/>
+                        </g>
+
+                        <!-- Factory roof structure -->
+                        <polygon points="120,200 250,170 380,200" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+                        <line x1="250" y1="170" x2="250" y2="200" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>
+
+                        <!-- Glowing furnace windows -->
+                        <rect x="180" y="260" width="20" height="25" fill="#dc2626" opacity="0.3" filter="url(#glowRed)"/>
+                        <rect x="180" y="260" width="20" height="25" fill="#ef4444" opacity="0.15"/>
+                        <rect x="210" y="260" width="20" height="25" fill="#dc2626" opacity="0.25" filter="url(#glowRed)"/>
+                        <rect x="210" y="260" width="20" height="25" fill="#ef4444" opacity="0.12"/>
+                        <rect x="240" y="260" width="20" height="25" fill="#dc2626" opacity="0.35" filter="url(#glowRed)"/>
+                        <rect x="240" y="260" width="20" height="25" fill="#f87171" opacity="0.15"/>
+                        <rect x="270" y="260" width="20" height="25" fill="#dc2626" opacity="0.2" filter="url(#glowRed)"/>
+                        <rect x="270" y="260" width="20" height="25" fill="#ef4444" opacity="0.1"/>
+                        <rect x="300" y="260" width="20" height="25" fill="#dc2626" opacity="0.3" filter="url(#glowRed)"/>
+                        <rect x="300" y="260" width="20" height="25" fill="#f87171" opacity="0.12"/>
+
+                        <!-- Furnace glow on ground -->
+                        <ellipse cx="250" cy="350" rx="120" ry="20" fill="url(#furnaceGlow)"/>
+
+                        <!-- Gantry crane structure (foreground) -->
+                        <g stroke="rgba(255,255,255,0.06)" stroke-width="1.5" fill="none">
+                            <!-- Vertical posts -->
+                            <line x1="80" y1="180" x2="80" y2="440"/>
+                            <line x1="420" y1="180" x2="420" y2="440"/>
+                            <!-- Cross beam -->
+                            <line x1="80" y1="180" x2="420" y2="180"/>
+                            <!-- Diagonal bracing -->
+                            <line x1="80" y1="180" x2="120" y2="220"/>
+                            <line x1="120" y1="180" x2="80" y2="220"/>
+                            <line x1="380" y1="180" x2="420" y2="220"/>
+                            <line x1="420" y1="180" x2="380" y2="220"/>
+                            <!-- Cross bracing middle -->
+                            <line x1="160" y1="250" x2="200" y2="290"/>
+                            <line x1="200" y1="250" x2="160" y2="290"/>
+                            <line x1="300" y1="250" x2="340" y2="290"/>
+                            <line x1="340" y1="250" x2="300" y2="290"/>
+                        </g>
+
+                        <!-- Crane hook hanging -->
+                        <g stroke="rgba(255,255,255,0.08)" stroke-width="1.5" fill="none">
+                            <line x1="250" y1="180" x2="250" y2="220"/>
+                            <path d="M240 220 Q250 240 260 220" stroke-width="2"/>
+                            <!-- Load chain -->
+                            <line x1="250" y1="228" x2="250" y2="270" stroke-width="1"/>
+                            <!-- Steel slab being lifted -->
+                            <rect x="225" y="270" width="50" height="12" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/>
+                        </g>
+
+                        <!-- Ground / platform -->
+                        <rect x="0" y="430" width="500" height="10" fill="rgba(255,255,255,0.02)"/>
+                        <line x1="0" y1="430" x2="500" y2="430" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>
+
+                        <!-- Label -->
+                        <text x="250" y="415" text-anchor="middle" fill="rgba(107,114,128,0.3)" font-family="Inter, sans-serif" font-size="10" letter-spacing="2" text-transform="uppercase">МЕТАЛЛУРГИЧЕСКИЙ ЗАВОД</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <span>Скролл</span>
+            <i class="fas fa-chevron-down text-xs"></i>
+        </div>
+    </section>
+
+    <!-- ========== STATISTICS ========== -->
+    <section class="relative z-10 -mt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card p-8" data-aos="fade-up">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="text-3xl font-extrabold tracking-tight" style="color:#dc2626;">15+</div>
+                        <div class="text-xs uppercase tracking-widest mt-1 font-medium" style="color:#6b7280;">Лет на рынке</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-extrabold tracking-tight" style="color:#dc2626;">200+</div>
+                        <div class="text-xs uppercase tracking-widest mt-1 font-medium" style="color:#6b7280;">Марок стали</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-extrabold tracking-tight" style="color:#dc2626;">50+</div>
+                        <div class="text-xs uppercase tracking-widest mt-1 font-medium" style="color:#6b7280;">Партнёров-заводов</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-extrabold tracking-tight" style="color:#dc2626;">98%</div>
+                        <div class="text-xs uppercase tracking-widest mt-1 font-medium" style="color:#6b7280;">Выполненных заказов</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PRODUCTS ========== -->
+    <section id="products" class="py-24 sm:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-title mb-4">Каталог продукции</h2>
+                <p class="section-subtitle mx-auto">
+                    Широкий спектр специальных сталей и сплавов для промышленных задач любой сложности
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+                <div class="product-card" data-aos="fade-up">
+                    <div class="w-12 h-12 flex items-center justify-center mb-5" style="color:#dc2626;font-size:1.4rem;border:1px solid rgba(220,38,38,0.15);border-radius:2px;background:rgba(220,38,38,0.05);">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3 class="text-base font-bold uppercase tracking-wide mb-3" style="color:#f5f5f5;">Листовая спецсталь</h3>
+                    <p class="text-sm leading-relaxed mb-4" style="color:#6b7280;">
+                        Горячекатаные и холоднокатаные листы из легированных марок стали. Толщина от 0.5 до 200 мм.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="grade-tag">12Х18Н10Т</span>
+                        <span class="grade-tag">10ХСНД</span>
+                        <span class="grade-tag">09Г2С</span>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 flex items-center justify-center mb-5" style="color:#dc2626;font-size:1.4rem;border:1px solid rgba(220,38,38,0.15);border-radius:2px;background:rgba(220,38,38,0.05);">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3 class="text-base font-bold uppercase tracking-wide mb-3" style="color:#f5f5f5;">Легированные стали</h3>
+                    <p class="text-sm leading-relaxed mb-4" style="color:#6b7280;">
+                        Конструкционные, инструментальные, жаропрочные и износостойкие легированные марки.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="grade-tag">40Х</span>
+                        <span class="grade-tag">30ХГСА</span>
+                        <span class="grade-tag">65Г</span>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 flex items-center justify-center mb-5" style="color:#dc2626;font-size:1.4rem;border:1px solid rgba(220,38,38,0.15);border-radius:2px;background:rgba(220,38,38,0.05);">
+                        <i class="fas fa-shield"></i>
+                    </div>
+                    <h3 class="text-base font-bold uppercase tracking-wide mb-3" style="color:#f5f5f5;">Нержавеющие сплавы</h3>
+                    <p class="text-sm leading-relaxed mb-4" style="color:#6b7280;">
+                        Коррозионностойкие стали и жаропрочные сплавы для агрессивных сред и высоких температур.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="grade-tag">08Х18Н10Т</span>
+                        <span class="grade-tag">12Х18Н9</span>
+                        <span class="grade-tag">20Х23Н18</span>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-12 h-12 flex items-center justify-center mb-5" style="color:#dc2626;font-size:1.4rem;border:1px solid rgba(220,38,38,0.15);border-radius:2px;background:rgba(220,38,38,0.05);">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3 class="text-base font-bold uppercase tracking-wide mb-3" style="color:#f5f5f5;">Редкие марки</h3>
+                    <p class="text-sm leading-relaxed mb-4" style="color:#6b7280;">
+                        Специальные и редкие марки стали, прецизионные сплавы, быстрорежущие стали под заказ.
+                    </p>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="grade-tag">Р6М5</span>
+                        <span class="grade-tag">ХВГ</span>
+                        <span class="grade-tag">38Х2МЮА</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== STEEL GRADES MARQUEE ========== -->
+    <section class="py-10 overflow-hidden" style="border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.04);background:rgba(255,255,255,0.015);">
+        <div class="marquee-wrap">
+            <div class="marquee-track">
+                <div class="flex items-center gap-3 text-xs font-mono uppercase tracking-widest" style="color:rgba(107,114,128,0.25);">
+                    <span>12Х18Н10Т</span> <span style="color:rgba(220,38,38,0.3);">//</span>
+                    <span>40Х</span> <span style="color:rgba(220,38,38,0.3);">//</span>
+                    <span>30ХГСА</span> <span style="color:rgba(220,38,38,0.3);">//</span>
+                    <span>09Г2С</span> <span style="color:rgba(220,38,38,0.3);">//</span>
+                    <span>08Х18Н10Т</span> <span style="color:rgba(220,38,38,0.3);">//</span>
+                    <span>Р6М5</span> <span style="color:rgba(220,38,38,0.3);">//</span>
+                    <span>65Г</span> <span style="color:rgba(220,38,38,0.3);">//</span>
+                    <span>38Х2МЮА</span> <span style="color:rgba(220,38,38,0.3);">//</span>
+                    <span>10ХСНД</span> <span style="color:rgba(220,38,38,0.3);">//</span>
+                    <span>20Х23Н18</span> <span style="color:rgba(220,38,38,0.3);">//</span>
+                </div>
+                <div class="flex items-center gap-3 text-xs font-mono uppercase tracking-widest" style="color:rgba(107,114,128,0.25);">
+                    <span>12Х18Н10Т</span> <span style="color:rgba(220,38,38,0.3);">//</span>
+                    <span>40Х</span> <span style="color:rgba(220,38,38,0.3);">//</span>
+                    <span>30ХГСА</span> <span style="color:rgba(220,38,38,0.3);">//</span>
+                    <span>09Г2С</span> <span style="color:rgba(220,38,38,0.3);">//</span>
+                    <span>08Х18Н10Т</span> <span style="color:rgba(220,38,38,0.3);">//</span>
+                    <span>Р6М5</span> <span style="color:rgba(220,38,38,0.3);">//</span>
+                    <span>65Г</span> <span style="color:rgba(220,38,38,0.3);">//</span>
+                    <span>38Х2МЮА</span> <span style="color:rgba(220,38,38,0.3);">//</span>
+                    <span>10ХСНД</span> <span style="color:rgba(220,38,38,0.3);">//</span>
+                    <span>20Х23Н18</span> <span style="color:rgba(220,38,38,0.3);">//</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== ADVANTAGES ========== -->
+    <section id="advantages" class="py-24 sm:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-title mb-4">Почему выбирают нас</h2>
+                <p class="section-subtitle mx-auto">
+                    Работаем с редкими позициями, где другие ищут отговорки
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass-card p-8" data-aos="fade-up">
+                    <div class="w-12 h-12 flex items-center justify-center mb-5" style="color:#dc2626;font-size:1.3rem;border:1px solid rgba(220,38,38,0.15);border-radius:2px;background:rgba(220,38,38,0.05);">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="text-base font-bold uppercase tracking-wide mb-3" style="color:#f5f5f5;">Любая редкая марка</h3>
+                    <p class="text-sm leading-relaxed" style="color:#6b7280;">
+                        Найдём и поставим даже самые труднодоступные позиции. Работаем со всеми категориями легированных и специальных сталей.
+                    </p>
+                </div>
+
+                <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 flex items-center justify-center mb-5" style="color:#dc2626;font-size:1.3rem;border:1px solid rgba(220,38,38,0.15);border-radius:2px;background:rgba(220,38,38,0.05);">
+                        <i class="fas fa-file-certificate"></i>
+                    </div>
+                    <h3 class="text-base font-bold uppercase tracking-wide mb-3" style="color:#f5f5f5;">Качество подтверждено</h3>
+                    <p class="text-sm leading-relaxed" style="color:#6b7280;">
+                        Сертификаты соответствия, паспорта качества, входной контроль и лабораторные испытания на каждой партии.
+                    </p>
+                </div>
+
+                <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 flex items-center justify-center mb-5" style="color:#dc2626;font-size:1.3rem;border:1px solid rgba(220,38,38,0.15);border-radius:2px;background:rgba(220,38,38,0.05);">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3 class="text-base font-bold uppercase tracking-wide mb-3" style="color:#f5f5f5;">От 1 кг до 100+ тонн</h3>
+                    <p class="text-sm leading-relaxed" style="color:#6b7280;">
+                        Любой объём — от пробной партии до масштабных промышленных поставок. Гибкие условия отгрузки и доставки.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTACTS ========== -->
+    <section id="contacts" class="py-24 sm:py-32" style="background:rgba(255,255,255,0.015);border-top:1px solid rgba(255,255,255,0.04);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-title mb-4">Свяжитесь с нами</h2>
+                <p class="section-subtitle mx-auto">
+                    Отправьте заявку — мы подберём нужную марку стали и подготовим лучшее коммерческое предложение
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-5 gap-8 items-start" data-aos="fade-up">
+                <div class="lg:col-span-3 glass-card p-8 sm:p-10">
+                    <form id="contactForm" onsubmit="handleForm(event)">
+                        <div class="grid sm:grid-cols-2 gap-5 mb-5">
+                            <div>
+                                <label class="block text-xs font-medium uppercase tracking-wider mb-2" style="color:#6b7280;">Ваше имя *</label>
+                                <input type="text" required placeholder="Иван Иванов" class="form-input">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium uppercase tracking-wider mb-2" style="color:#6b7280;">Телефон *</label>
+                                <input type="tel" required placeholder="+7 (999) 123-45-67" class="form-input">
+                            </div>
+                        </div>
+                        <div class="mb-5">
+                            <label class="block text-xs font-medium uppercase tracking-wider mb-2" style="color:#6b7280;">Email</label>
+                            <input type="email" placeholder="ivanov@example.com" class="form-input">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-xs font-medium uppercase tracking-wider mb-2" style="color:#6b7280;">Что нужно? *</label>
+                            <textarea rows="4" required placeholder="Укажите марку стали, размеры, объём партии..." class="form-input resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="btn-cta text-white w-full py-4 font-semibold text-sm no-underline inline-flex items-center justify-center gap-3" style="border-radius:2px;box-shadow:0 4px 20px rgba(220,38,38,0.2);">
+                            <i class="fas fa-paper-plane"></i>
+                            Отправить заявку
+                        </button>
+                        <p class="text-xs text-center mt-4" style="color:rgba(107,114,128,0.4);">
+                            Нажимая «Отправить», вы соглашаетесь на обработку персональных данных
+                        </p>
+                    </form>
+                </div>
+
+                <div class="lg:col-span-2 space-y-5">
+                    <div class="glass-card p-6 sm:p-8">
+                        <h3 class="text-sm font-bold uppercase tracking-wider mb-5" style="color:#f5f5f5;">Контакты</h3>
+                        <div class="space-y-4 text-sm">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 flex items-center justify-center shrink-0" style="color:#dc2626;border:1px solid rgba(220,38,38,0.15);border-radius:2px;background:rgba(220,38,38,0.05);">
+                                    <i class="fas fa-phone text-xs"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-xs uppercase tracking-wider mb-1" style="color:#9ca3af;">Телефон</div>
+                                    <a href="tel:+74951234567" class="no-underline text-sm" style="color:#6b7280;">+7 (495) 123-45-67</a>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 flex items-center justify-center shrink-0" style="color:#dc2626;border:1px solid rgba(220,38,38,0.15);border-radius:2px;background:rgba(220,38,38,0.05);">
+                                    <i class="fas fa-envelope text-xs"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-xs uppercase tracking-wider mb-1" style="color:#9ca3af;">Email</div>
+                                    <a href="mailto:info@metspetsstal.ru" class="no-underline text-sm" style="color:#6b7280;">info@metspetsstal.ru</a>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 flex items-center justify-center shrink-0" style="color:#dc2626;border:1px solid rgba(220,38,38,0.15);border-radius:2px;background:rgba(220,38,38,0.05);">
+                                    <i class="fas fa-map-marker-alt text-xs"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-xs uppercase tracking-wider mb-1" style="color:#9ca3af;">Адрес</div>
+                                    <div class="text-sm" style="color:#6b7280;">г. Москва, ул. Металлургов, д. 10</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 sm:p-8">
+                        <h3 class="text-sm font-bold uppercase tracking-wider mb-5" style="color:#f5f5f5;">Быстрая связь</h3>
+                        <div class="space-y-3">
+                            <a href="https://wa.me/74951234567" target="_blank" rel="noopener" class="flex items-center gap-3 px-5 py-3.5 font-medium no-underline text-sm transition-all duration-300 uppercase tracking-wider" style="background:rgba(37,211,102,0.06);color:#25D366;border:1px solid rgba(37,211,102,0.15);border-radius:2px;" onmouseover="this.style.background='rgba(37,211,102,0.12)'" onmouseout="this.style.background='rgba(37,211,102,0.06)'">
+                                <i class="fab fa-whatsapp"></i>
+                                WhatsApp
+                            </a>
+                            <a href="https://t.me/metspetsstal" target="_blank" rel="noopener" class="flex items-center gap-3 px-5 py-3.5 font-medium no-underline text-sm transition-all duration-300 uppercase tracking-wider" style="background:rgba(0,136,204,0.06);color:#0088cc;border:1px solid rgba(0,136,204,0.15);border-radius:2px;" onmouseover="this.style.background='rgba(0,136,204,0.12)'" onmouseout="this.style.background='rgba(0,136,204,0.06)'">
+                                <i class="fab fa-telegram-plane"></i>
+                                Telegram
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer style="background:#080b10;border-top:1px solid rgba(255,255,255,0.04);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-3 font-bold text-base" style="color:#f5f5f5;">
+                    <svg width="26" height="26" viewBox="0 0 34 34" fill="none">
+                        <path d="M17 2L4 9v8c0 8.5 5.5 16.5 13 19 7.5-2.5 13-10.5 13-19V9L17 2z" stroke="#dc2626" stroke-width="1.8" fill="none"/>
+                        <path d="M12 20l5-12 5 12" stroke="#dc2626" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+                        <path d="M13.5 20h7" stroke="#dc2626" stroke-width="1.5" fill="none"/>
+                    </svg>
+                    МетСпецСталь
+                </div>
+                <div class="text-xs text-center md:text-left uppercase tracking-wider" style="color:rgba(107,114,128,0.4);">
+                    © 2026 МетСпецСталь. Все права защищены.
+                </div>
+                <div class="flex gap-6 text-xs uppercase tracking-widest">
+                    <a href="#hero" class="no-underline transition-colors" style="color:rgba(107,114,128,0.4);" onmouseover="this.style.color='#dc2626'" onmouseout="this.style.color='rgba(107,114,128,0.4)'">Наверх</a>
+                    <a href="#products" class="no-underline transition-colors" style="color:rgba(107,114,128,0.4);" onmouseover="this.style.color='#dc2626'" onmouseout="this.style.color='rgba(107,114,128,0.4)'">Продукция</a>
+                    <a href="#contacts" class="no-underline transition-colors" style="color:rgba(107,114,128,0.4);" onmouseover="this.style.color='#dc2626'" onmouseout="this.style.color='rgba(107,114,128,0.4)'">Контакты</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({ duration: 600, once: true, offset: 80 });
+
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('nav-scrolled', window.scrollY > 80);
+        });
+
+        function handleForm(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const original = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+            btn.disabled = true;
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check-circle"></i> Заявка отправлена!';
+                btn.style.background = 'linear-gradient(135deg, #059669, #10b981)';
+                e.target.reset();
+                setTimeout(() => {
+                    btn.innerHTML = original;
+                    btn.style.background = '';
+                    btn.disabled = false;
+                }, 3000);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
