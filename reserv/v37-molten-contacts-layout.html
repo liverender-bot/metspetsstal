@@ -1509,27 +1509,6 @@
                             <label class="block text-sm font-medium mb-2" style="color:#94a3b8;">Что нужно? *</label>
                             <textarea rows="4" required placeholder="Укажите марку стали, размеры, объём партии..." class="form-input resize-none"></textarea>
                         </div>
-
-                        <!-- Upload block before submit -->
-                        <div class="contacts-upload-card mb-5" id="contactsDropZone">
-                            <div class="flex items-center gap-4">
-                                <div class="flex-shrink-0">
-                                    <div class="w-11 h-11 rounded-xl flex items-center justify-center" style="background:rgba(255,107,53,0.1);color:#ff6b35;font-size:1.2rem;">
-                                        <i class="fas fa-cloud-upload-alt"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <div class="text-sm font-semibold" style="color:#f1f5f9;" id="contactsUploadTitle">Прикрепите заказ-наряд (необязательно)</div>
-                                    <div class="text-xs mt-0.5" style="color:#64748b;" id="contactsUploadHint">PDF, DOC, XLS — перетащите или нажмите</div>
-                                </div>
-                                <label class="contacts-file-btn" style="font-size:0.75rem;padding:0.45rem 1rem;">
-                                    <i class="fas fa-paperclip"></i>
-                                    Выбрать
-                                    <input type="file" multiple id="contactsFileInput" style="display:none" accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.png,.zip">
-                                </label>
-                            </div>
-                        </div>
-
                         <button type="submit" class="btn-cta text-white w-full py-4 rounded-xl font-semibold text-base inline-flex items-center justify-center gap-3 no-underline" style="box-shadow:0 4px 20px rgba(255,107,53,0.25);">
                             <i class="fas fa-paper-plane"></i>
                             Отправить заявку
@@ -1542,58 +1521,82 @@
 
                 <!-- Contact Info -->
                 <div class="lg:col-span-2 space-y-5">
-                    <div class="glass-card p-6 sm:p-8">
-                        <h3 class="text-base font-bold mb-5" style="color:#f1f5f9;">Контакты</h3>
-                        <div class="space-y-5">
-                            <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);color:#ff6b35;">
-                                    <i class="fas fa-phone"></i>
+                    <div class="flex flex-col sm:flex-row gap-5">
+                        <!-- Contacts (left) -->
+                        <div class="glass-card p-6 sm:p-8 flex-1">
+                            <h3 class="text-base font-bold mb-5" style="color:#f1f5f9;">Контакты</h3>
+                            <div class="space-y-5">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);color:#ff6b35;">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <a href="tel:+78129222158" class="no-underline text-lg font-semibold transition-colors" style="color:#f1f5f9;" onmouseover="this.style.color='#ff6b35'" onmouseout="this.style.color='#f1f5f9'">+7 (812) 922-21-58</a>
                                 </div>
-                                <a href="tel:+78129222158" class="no-underline text-lg font-semibold transition-colors" style="color:#f1f5f9;" onmouseover="this.style.color='#ff6b35'" onmouseout="this.style.color='#f1f5f9'">+7 (812) 922-21-58</a>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);color:#ff6b35;">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <a href="mailto:info@metspetsstal.ru" class="no-underline text-lg font-semibold transition-colors" style="color:#f1f5f9;" onmouseover="this.style.color='#ff6b35'" onmouseout="this.style.color='#f1f5f9'">info@metspetsstal.ru</a>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);color:#ff6b35;">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <span class="text-lg font-semibold" style="color:#f1f5f9;">г. Москва, ул. Металлургов, д. 10</span>
+                                </div>
                             </div>
-                            <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);color:#ff6b35;">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <a href="mailto:info@metspetsstal.ru" class="no-underline text-lg font-semibold transition-colors" style="color:#f1f5f9;" onmouseover="this.style.color='#ff6b35'" onmouseout="this.style.color='#f1f5f9'">info@metspetsstal.ru</a>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background:rgba(255,107,53,0.1);color:#ff6b35;">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                                <span class="text-lg font-semibold" style="color:#f1f5f9;">г. Москва, ул. Металлургов, д. 10</span>
+                        </div>
+
+                        <!-- Messengers (right) -->
+                        <div class="glass-card p-6 sm:p-8 flex-1">
+                            <h3 class="text-base font-bold mb-5" style="color:#f1f5f9;">Быстрая связь</h3>
+                            <div class="space-y-3">
+                                <a href="https://wa.me/78129222158?text=Макс,%20здравствуйте!" target="_blank" rel="noopener" class="flex items-center gap-3 px-5 py-3.5 rounded-xl font-medium no-underline transition-all duration-300" style="background:rgba(83,62,238,0.08);color:#8b7cf7;border:1px solid rgba(83,62,238,0.15);" onmouseover="this.style.background='rgba(83,62,238,0.15)'" onmouseout="this.style.background='rgba(83,62,238,0.08)'">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="22" height="22" style="display:block;flex-shrink:0;">
+                                        <defs>
+                                            <linearGradient id="maxC1"><stop offset="0" stop-color="#4cf"/><stop offset=".662" stop-color="#53e"/><stop offset="1" stop-color="#93d"/></linearGradient>
+                                            <linearGradient id="maxC2" x1="117.847" x2="1000" y1="760.536" y2="500" gradientUnits="userSpaceOnUse" href="#maxC1"/>
+                                            <radialGradient id="maxC3" cx="-87.392" cy="1166.116" r="500" fx="-87.392" fy="1166.116" gradientTransform="rotate(51.356 1551.478 559.3)scale(2.427 1)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#00f" stop-opacity="0.3"/><stop offset="1" stop-opacity="0"/></radialGradient>
+                                        </defs>
+                                        <rect width="1000" height="1000" fill="url(#maxC2)" ry="249.681"/>
+                                        <rect width="1000" height="1000" fill="url(#maxC3)" ry="249.681"/>
+                                        <path fill="#fff" fill-rule="evenodd" d="M508.211 878.328c-75.007 0-109.864-10.95-170.453-54.75-38.325 49.275-159.686 87.783-164.979 21.9 0-49.456-10.95-91.248-23.36-136.873-14.782-56.21-31.572-118.807-31.572-209.508 0-216.626 177.754-379.597 388.357-379.597 210.785 0 375.947 171.001 375.947 381.604.707 207.346-166.595 376.118-373.94 377.224m3.103-571.585c-102.564-5.292-182.499 65.7-200.201 177.024-14.6 92.162 11.315 204.398 33.397 210.238 10.585 2.555 37.23-18.98 53.837-35.587a189.8 189.8 0 0 0 92.71 33.032c106.273 5.112 197.08-75.794 204.215-181.95 4.154-106.382-77.67-196.486-183.958-202.574Z" clip-rule="evenodd"/>
+                                    </svg>
+                                    МАКС — ответим за 2 минуты !
+                                </a>
+                                <a href="https://wa.me/78129222158" target="_blank" rel="noopener" class="flex items-center gap-3 px-5 py-3.5 rounded-xl font-medium no-underline transition-all duration-300" style="background:rgba(37,211,102,0.1);color:#25D366;border:1px solid rgba(37,211,102,0.2);" onmouseover="this.style.background='rgba(37,211,102,0.2)'" onmouseout="this.style.background='rgba(37,211,102,0.1)'">
+                                    <i class="fab fa-whatsapp" style="font-size:1.25rem;"></i>
+                                    WhatsApp
+                                </a>
+                                <a href="https://t.me/metspetsstal" target="_blank" rel="noopener" class="flex items-center gap-3 px-5 py-3.5 rounded-xl font-medium no-underline transition-all duration-300" style="background:rgba(0,136,204,0.1);color:#0088cc;border:1px solid rgba(0,136,204,0.2);" onmouseover="this.style.background='rgba(0,136,204,0.2)'" onmouseout="this.style.background='rgba(0,136,204,0.1)'">
+                                    <i class="fab fa-telegram-plane" style="font-size:1.25rem;"></i>
+                                    Telegram
+                                </a>
+                                <a href="https://vk.com/metspetsstal" target="_blank" rel="noopener" class="flex items-center gap-3 px-5 py-3.5 rounded-xl font-medium no-underline transition-all duration-300" style="background:rgba(74,118,168,0.1);color:#6d8fc6;border:1px solid rgba(74,118,168,0.2);" onmouseover="this.style.background='rgba(74,118,168,0.2)'" onmouseout="this.style.background='rgba(74,118,168,0.1)'">
+                                    <i class="fab fa-vk" style="font-size:1.25rem;"></i>
+                                    VKontakte
+                                </a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="glass-card p-6 sm:p-8">
-                        <h3 class="text-base font-bold mb-5" style="color:#f1f5f9;">Быстрая связь</h3>
-                        <div class="space-y-3">
-                            <a href="https://wa.me/78129222158?text=Макс,%20здравствуйте!" target="_blank" rel="noopener" class="flex items-center gap-3 px-5 py-3.5 rounded-xl font-medium no-underline transition-all duration-300" style="background:rgba(83,62,238,0.08);color:#8b7cf7;border:1px solid rgba(83,62,238,0.15);" onmouseover="this.style.background='rgba(83,62,238,0.15)'" onmouseout="this.style.background='rgba(83,62,238,0.08)'">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="22" height="22" style="display:block;flex-shrink:0;">
-                                    <defs>
-                                        <linearGradient id="maxC1"><stop offset="0" stop-color="#4cf"/><stop offset=".662" stop-color="#53e"/><stop offset="1" stop-color="#93d"/></linearGradient>
-                                        <linearGradient id="maxC2" x1="117.847" x2="1000" y1="760.536" y2="500" gradientUnits="userSpaceOnUse" href="#maxC1"/>
-                                        <radialGradient id="maxC3" cx="-87.392" cy="1166.116" r="500" fx="-87.392" fy="1166.116" gradientTransform="rotate(51.356 1551.478 559.3)scale(2.427 1)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#00f" stop-opacity="0.3"/><stop offset="1" stop-opacity="0"/></radialGradient>
-                                    </defs>
-                                    <rect width="1000" height="1000" fill="url(#maxC2)" ry="249.681"/>
-                                    <rect width="1000" height="1000" fill="url(#maxC3)" ry="249.681"/>
-                                    <path fill="#fff" fill-rule="evenodd" d="M508.211 878.328c-75.007 0-109.864-10.95-170.453-54.75-38.325 49.275-159.686 87.783-164.979 21.9 0-49.456-10.95-91.248-23.36-136.873-14.782-56.21-31.572-118.807-31.572-209.508 0-216.626 177.754-379.597 388.357-379.597 210.785 0 375.947 171.001 375.947 381.604.707 207.346-166.595 376.118-373.94 377.224m3.103-571.585c-102.564-5.292-182.499 65.7-200.201 177.024-14.6 92.162 11.315 204.398 33.397 210.238 10.585 2.555 37.23-18.98 53.837-35.587a189.8 189.8 0 0 0 92.71 33.032c106.273 5.112 197.08-75.794 204.215-181.95 4.154-106.382-77.67-196.486-183.958-202.574Z" clip-rule="evenodd"/>
-                                </svg>
-                                МАКС — ответим за 2 минуты !
-                            </a>
-                            <a href="https://wa.me/78129222158" target="_blank" rel="noopener" class="flex items-center gap-3 px-5 py-3.5 rounded-xl font-medium no-underline transition-all duration-300" style="background:rgba(37,211,102,0.1);color:#25D366;border:1px solid rgba(37,211,102,0.2);" onmouseover="this.style.background='rgba(37,211,102,0.2)'" onmouseout="this.style.background='rgba(37,211,102,0.1)'">
-                                <i class="fab fa-whatsapp" style="font-size:1.25rem;"></i>
-                                WhatsApp
-                            </a>
-                            <a href="https://t.me/metspetsstal" target="_blank" rel="noopener" class="flex items-center gap-3 px-5 py-3.5 rounded-xl font-medium no-underline transition-all duration-300" style="background:rgba(0,136,204,0.1);color:#0088cc;border:1px solid rgba(0,136,204,0.2);" onmouseover="this.style.background='rgba(0,136,204,0.2)'" onmouseout="this.style.background='rgba(0,136,204,0.1)'">
-                                <i class="fab fa-telegram-plane" style="font-size:1.25rem;"></i>
-                                Telegram
-                            </a>
-                            <a href="https://vk.com/metspetsstal" target="_blank" rel="noopener" class="flex items-center gap-3 px-5 py-3.5 rounded-xl font-medium no-underline transition-all duration-300" style="background:rgba(74,118,168,0.1);color:#6d8fc6;border:1px solid rgba(74,118,168,0.2);" onmouseover="this.style.background='rgba(74,118,168,0.2)'" onmouseout="this.style.background='rgba(74,118,168,0.1)'">
-                                <i class="fab fa-vk" style="font-size:1.25rem;"></i>
-                                VKontakte
-                            </a>
+                    <!-- Upload block under contacts (left side) -->
+                    <div class="contacts-upload-card" id="contactsDropZone" style="max-width:480px;">
+                        <div class="flex items-center gap-4">
+                            <div class="flex-shrink-0">
+                                <div class="w-11 h-11 rounded-xl flex items-center justify-center" style="background:rgba(255,107,53,0.1);color:#ff6b35;font-size:1.2rem;">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-sm font-semibold" style="color:#f1f5f9;" id="contactsUploadTitle">Пришлите заказ-наряд</div>
+                                <div class="text-xs mt-0.5" style="color:#64748b;" id="contactsUploadHint">PDF, DOC, XLS — перетащите или нажмите</div>
+                            </div>
+                            <label class="contacts-file-btn" style="font-size:0.75rem;padding:0.45rem 1rem;">
+                                <i class="fas fa-paperclip"></i>
+                                Выбрать
+                                <input type="file" multiple id="contactsFileInput" style="display:none" accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.png,.zip">
+                            </label>
                         </div>
                     </div>
                 </div>

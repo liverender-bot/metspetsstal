@@ -1509,27 +1509,6 @@
                             <label class="block text-sm font-medium mb-2" style="color:#94a3b8;">Что нужно? *</label>
                             <textarea rows="4" required placeholder="Укажите марку стали, размеры, объём партии..." class="form-input resize-none"></textarea>
                         </div>
-
-                        <!-- Upload block before submit -->
-                        <div class="contacts-upload-card mb-5" id="contactsDropZone">
-                            <div class="flex items-center gap-4">
-                                <div class="flex-shrink-0">
-                                    <div class="w-11 h-11 rounded-xl flex items-center justify-center" style="background:rgba(255,107,53,0.1);color:#ff6b35;font-size:1.2rem;">
-                                        <i class="fas fa-cloud-upload-alt"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <div class="text-sm font-semibold" style="color:#f1f5f9;" id="contactsUploadTitle">Прикрепите заказ-наряд (необязательно)</div>
-                                    <div class="text-xs mt-0.5" style="color:#64748b;" id="contactsUploadHint">PDF, DOC, XLS — перетащите или нажмите</div>
-                                </div>
-                                <label class="contacts-file-btn" style="font-size:0.75rem;padding:0.45rem 1rem;">
-                                    <i class="fas fa-paperclip"></i>
-                                    Выбрать
-                                    <input type="file" multiple id="contactsFileInput" style="display:none" accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.png,.zip">
-                                </label>
-                            </div>
-                        </div>
-
                         <button type="submit" class="btn-cta text-white w-full py-4 rounded-xl font-semibold text-base inline-flex items-center justify-center gap-3 no-underline" style="box-shadow:0 4px 20px rgba(255,107,53,0.25);">
                             <i class="fas fa-paper-plane"></i>
                             Отправить заявку
@@ -1604,6 +1583,29 @@
 
     <!-- ========== FOOTER ========== -->
     <footer style="background:#060b15;border-top:1px solid rgba(255,255,255,0.04);">
+        <!-- Upload tab sticking out from footer -->
+        <div class="footer-upload-tab" data-aos="fade-up">
+            <div class="footer-upload-body" id="contactsDropZone">
+                <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background:rgba(255,107,53,0.12);color:#ff6b35;font-size:1.4rem;">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                    </div>
+                    <div class="flex-1 text-center sm:text-left">
+                        <div class="text-sm font-bold" style="color:#f1f5f9;" id="contactsUploadTitle">Пришлите ваш заказ-наряд прямо сейчас</div>
+                        <div class="text-xs mt-0.5" style="color:#64748b;" id="contactsUploadHint">Загрузите спецификацию — менеджер подберёт всё за 5 минут</div>
+                    </div>
+                    <div class="flex-shrink-0 flex items-center gap-3">
+                        <label class="footer-file-btn">
+                            <i class="fas fa-paperclip"></i>
+                            Выбрать файл
+                            <input type="file" multiple id="contactsFileInput" style="display:none" accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.png,.zip">
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="flex flex-col md:flex-row justify-between items-center gap-6">
                 <div class="flex items-center gap-3 font-bold text-lg" style="color:#f1f5f9;">
