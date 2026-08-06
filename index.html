@@ -95,6 +95,26 @@
         .product-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #ff6b35, #fb923c); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
         .product-card:hover { transform: translateY(-8px); border-color: rgba(255,107,53,0.2); box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(255,107,53,0.06); }
         .product-card:hover::before { transform: scaleX(1); }
+        .catalog-order-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #ff6b35;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255,107,53,0.08);
+            border: 1px solid rgba(255,107,53,0.2);
+            transition: all 0.3s;
+        }
+        .catalog-order-btn:hover {
+            background: rgba(255,107,53,0.14);
+            border-color: rgba(255,107,53,0.35);
+            color: #fb923c;
+            transform: translateY(-2px);
+        }
 
         .form-input { width: 100%; padding: 0.875rem 1.25rem; border: 1.5px solid rgba(255,255,255,0.08); border-radius: 12px; font-family: inherit; font-size: 0.95rem; transition: all 0.3s; background: rgba(255,255,255,0.04); color: #e2e8f0; }
         .form-input:focus { outline: none; border-color: #ff6b35; box-shadow: 0 0 0 4px rgba(255,107,53,0.1); background: rgba(255,255,255,0.06); }
@@ -1244,72 +1264,139 @@
             <div class="text-center mb-16" data-aos="fade-up">
                 <h2 class="section-title mb-4">Каталог продукции</h2>
                 <p class="section-subtitle mx-auto">
-                    Широкий спектр специальных сталей и сплавов для промышленных задач любой сложности
+                    Листовой прокат из углеродистых, легированных и низколегированных сталей — с сертификатами качества и документами по ГОСТ
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Product 1 -->
-                <div class="product-card" data-aos="fade-up">
-                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5" style="background:rgba(255,107,53,0.1);color:#ff6b35;font-size:1.5rem;">
-                        <i class="fas fa-layer-group"></i>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Product 1: углеродистая сталь -->
+                <div class="product-card flex flex-col" data-aos="fade-up">
+                    <div class="flex items-start justify-between gap-3 mb-4">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(255,107,53,0.1);color:#ff6b35;font-size:1.25rem;">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <span class="text-[10px] font-mono px-2.5 py-1 rounded-md whitespace-nowrap" style="background:rgba(255,107,53,0.08);color:#fb923c;border:1px solid rgba(255,107,53,0.25);">ГОСТ 14637-89 · 16523-97</span>
                     </div>
-                    <h3 class="text-lg font-bold mb-3" style="color:#f1f5f9;">Листовая спецсталь</h3>
-                    <p class="text-sm leading-relaxed mb-4" style="color:#64748b;">
-                        Горячекатаные и холоднокатаные листы из легированных марок стали. Толщина от 0.5 до 200 мм.
-                    </p>
+                    <h3 class="text-lg font-bold mb-1" style="color:#f1f5f9;">Углеродистая сталь</h3>
+                    <p class="text-sm mb-4" style="color:#94a3b8;">Лист горячекатаный, сталь обыкновенного качества</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:rgba(255,255,255,0.05);color:#94a3b8;border:1px solid rgba(255,255,255,0.06);">12Х18Н10Т</span>
-                        <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:rgba(255,255,255,0.05);color:#94a3b8;border:1px solid rgba(255,255,255,0.06);">10ХСНД</span>
-                        <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:rgba(255,255,255,0.05);color:#94a3b8;border:1px solid rgba(255,255,255,0.06);">09Г2С</span>
+                        <span class="text-xs px-3 py-1 rounded-full font-medium font-mono" style="background:rgba(255,255,255,0.05);color:#e2e8f0;border:1px solid rgba(255,107,53,0.2);">Ст3сп</span>
+                        <span class="text-xs px-3 py-1 rounded-full font-medium font-mono" style="background:rgba(255,255,255,0.05);color:#e2e8f0;border:1px solid rgba(255,107,53,0.2);">Ст3пс</span>
+                    </div>
+                    <div class="mt-auto pt-6">
+                        <div class="flex items-center justify-between text-xs mb-2">
+                            <span class="font-semibold" style="color:#64748b;"><i class="fas fa-ruler-horizontal mr-1.5" style="color:#ff6b35;"></i>Толщина листа</span>
+                            <span class="font-mono font-semibold" style="color:#f1f5f9;">4–160 мм</span>
+                        </div>
+                        <div class="relative h-2 rounded-full overflow-hidden mb-1.5" style="background:rgba(255,255,255,0.06);">
+                            <div class="absolute inset-0 rounded-full" style="background:linear-gradient(90deg,#ff6b35,#fb923c);opacity:0.85;"></div>
+                        </div>
+                        <div class="flex justify-between text-[10px] font-mono mb-5" style="color:#64748b;">
+                            <span>4</span><span>40</span><span>80</span><span>120</span><span>160 мм</span>
+                        </div>
+                        <a href="#contacts" class="catalog-order-btn">Заказать лист <i class="fas fa-arrow-right" style="font-size:0.55rem;"></i></a>
                     </div>
                 </div>
 
-                <!-- Product 2 -->
-                <div class="product-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5" style="background:rgba(255,107,53,0.1);color:#ff6b35;font-size:1.5rem;">
-                        <i class="fas fa-atom"></i>
+                <!-- Product 2: конструкционная легированная -->
+                <div class="product-card flex flex-col" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-start justify-between gap-3 mb-4">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(255,107,53,0.1);color:#ff6b35;font-size:1.25rem;">
+                            <i class="fas fa-industry"></i>
+                        </div>
+                        <span class="text-[10px] font-mono px-2.5 py-1 rounded-md whitespace-nowrap" style="background:rgba(255,107,53,0.08);color:#fb923c;border:1px solid rgba(255,107,53,0.25);">ГОСТ 1577-93</span>
                     </div>
-                    <h3 class="text-lg font-bold mb-3" style="color:#f1f5f9;">Легированные стали</h3>
-                    <p class="text-sm leading-relaxed mb-4" style="color:#64748b;">
-                        Конструкционные, инструментальные, жаропрочные и износостойкие легированные марки.
-                    </p>
+                    <h3 class="text-lg font-bold mb-1" style="color:#f1f5f9;">Конструкционная легированная</h3>
+                    <p class="text-sm mb-4" style="color:#94a3b8;">Прокат толстолистовой, качественная сталь</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:rgba(255,255,255,0.05);color:#94a3b8;border:1px solid rgba(255,255,255,0.06);">40Х</span>
-                        <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:rgba(255,255,255,0.05);color:#94a3b8;border:1px solid rgba(255,255,255,0.06);">30ХГСА</span>
-                        <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:rgba(255,255,255,0.05);color:#94a3b8;border:1px solid rgba(255,255,255,0.06);">65Г</span>
+                        <span class="text-xs px-3 py-1 rounded-full font-medium font-mono" style="background:rgba(255,255,255,0.05);color:#e2e8f0;border:1px solid rgba(255,107,53,0.2);">20</span>
+                        <span class="text-xs px-3 py-1 rounded-full font-medium font-mono" style="background:rgba(255,255,255,0.05);color:#e2e8f0;border:1px solid rgba(255,107,53,0.2);">35</span>
+                        <span class="text-xs px-3 py-1 rounded-full font-medium font-mono" style="background:rgba(255,255,255,0.05);color:#e2e8f0;border:1px solid rgba(255,107,53,0.2);">45</span>
+                        <span class="text-xs px-3 py-1 rounded-full font-medium font-mono" style="background:rgba(255,255,255,0.05);color:#e2e8f0;border:1px solid rgba(255,107,53,0.2);">40Х</span>
+                        <span class="text-xs px-3 py-1 rounded-full font-medium font-mono" style="background:rgba(255,255,255,0.05);color:#e2e8f0;border:1px solid rgba(255,107,53,0.2);">45Х</span>
+                        <span class="text-xs px-3 py-1 rounded-full font-medium font-mono" style="background:rgba(255,255,255,0.05);color:#e2e8f0;border:1px solid rgba(255,107,53,0.2);">65</span>
+                    </div>
+                    <p class="text-[11px] mt-3 leading-relaxed" style="color:#64748b;">Марки по ГОСТ 1050 · 4543 · 14959</p>
+                    <div class="mt-auto pt-6">
+                        <div class="flex items-center justify-between text-xs mb-2">
+                            <span class="font-semibold" style="color:#64748b;"><i class="fas fa-ruler-horizontal mr-1.5" style="color:#ff6b35;"></i>Толщина листа</span>
+                            <span class="font-mono font-semibold" style="color:#f1f5f9;">4–160 мм</span>
+                        </div>
+                        <div class="relative h-2 rounded-full overflow-hidden mb-1.5" style="background:rgba(255,255,255,0.06);">
+                            <div class="absolute inset-0 rounded-full" style="background:linear-gradient(90deg,#ff6b35,#fb923c);opacity:0.85;"></div>
+                        </div>
+                        <div class="flex justify-between text-[10px] font-mono mb-5" style="color:#64748b;">
+                            <span>4</span><span>40</span><span>80</span><span>120</span><span>160 мм</span>
+                        </div>
+                        <a href="#contacts" class="catalog-order-btn">Заказать прокат <i class="fas fa-arrow-right" style="font-size:0.55rem;"></i></a>
                     </div>
                 </div>
 
-                <!-- Product 3 -->
-                <div class="product-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5" style="background:rgba(255,107,53,0.1);color:#ff6b35;font-size:1.5rem;">
-                        <i class="fas fa-shield"></i>
+                <!-- Product 3: низколегированная повышенной прочности -->
+                <div class="product-card flex flex-col" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-start justify-between gap-3 mb-4">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(255,107,53,0.1);color:#ff6b35;font-size:1.25rem;">
+                            <i class="fas fa-shield"></i>
+                        </div>
+                        <span class="text-[10px] font-mono px-2.5 py-1 rounded-md whitespace-nowrap" style="background:rgba(255,107,53,0.08);color:#fb923c;border:1px solid rgba(255,107,53,0.25);">ГОСТ 19281-89</span>
                     </div>
-                    <h3 class="text-lg font-bold mb-3" style="color:#f1f5f9;">Нержавеющие сплавы</h3>
-                    <p class="text-sm leading-relaxed mb-4" style="color:#64748b;">
-                        Коррозионностойкие стали и жаропрочные сплавы для агрессивных сред и высоких температур.
-                    </p>
+                    <h3 class="text-lg font-bold mb-1" style="color:#f1f5f9;">Низколегированная, повышенной прочности</h3>
+                    <p class="text-sm mb-4" style="color:#94a3b8;">Лист горячекатаный</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:rgba(255,255,255,0.05);color:#94a3b8;border:1px solid rgba(255,255,255,0.06);">08Х18Н10Т</span>
-                        <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:rgba(255,255,255,0.05);color:#94a3b8;border:1px solid rgba(255,255,255,0.06);">12Х18Н9</span>
-                        <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:rgba(255,255,255,0.05);color:#94a3b8;border:1px solid rgba(255,255,255,0.06);">20Х23Н18</span>
+                        <span class="text-xs px-3 py-1 rounded-full font-medium font-mono" style="background:rgba(255,255,255,0.05);color:#e2e8f0;border:1px solid rgba(255,107,53,0.2);">09Г2</span>
+                        <span class="text-xs px-3 py-1 rounded-full font-medium font-mono" style="background:rgba(255,255,255,0.05);color:#e2e8f0;border:1px solid rgba(255,107,53,0.2);">09Г2С</span>
+                        <span class="text-xs px-3 py-1 rounded-full font-medium font-mono" style="background:rgba(255,255,255,0.05);color:#e2e8f0;border:1px solid rgba(255,107,53,0.2);">10Г2С1</span>
+                        <span class="text-xs px-3 py-1 rounded-full font-medium font-mono" style="background:rgba(255,255,255,0.05);color:#e2e8f0;border:1px solid rgba(255,107,53,0.2);">14Г2</span>
+                        <span class="text-xs px-3 py-1 rounded-full font-medium font-mono" style="background:rgba(255,255,255,0.05);color:#e2e8f0;border:1px solid rgba(255,107,53,0.2);">15ГФ</span>
+                        <span class="text-xs px-3 py-1 rounded-full font-medium font-mono" style="background:rgba(255,255,255,0.05);color:#e2e8f0;border:1px solid rgba(255,107,53,0.2);">15ХСНД</span>
+                        <span class="text-xs px-3 py-1 rounded-full font-medium font-mono" style="background:rgba(255,255,255,0.05);color:#e2e8f0;border:1px solid rgba(255,107,53,0.2);">10ХСДП</span>
+                        <span class="text-xs px-3 py-1 rounded-full font-medium font-mono" style="background:rgba(255,255,255,0.05);color:#e2e8f0;border:1px solid rgba(255,107,53,0.2);">10Г2Б</span>
+                        <span class="text-xs px-3 py-1 rounded-full font-medium font-mono" style="background:rgba(255,255,255,0.05);color:#e2e8f0;border:1px solid rgba(255,107,53,0.2);">10ХСНД</span>
+                        <span class="text-xs px-3 py-1 rounded-full font-medium font-mono" style="background:rgba(255,255,255,0.05);color:#e2e8f0;border:1px solid rgba(255,107,53,0.2);">15Г2СФ</span>
+                        <span class="text-xs px-3 py-1 rounded-full font-medium font-mono" style="background:rgba(255,255,255,0.05);color:#e2e8f0;border:1px solid rgba(255,107,53,0.2);">16ГС</span>
+                        <span class="text-xs px-3 py-1 rounded-full font-medium font-mono" style="background:rgba(255,255,255,0.05);color:#e2e8f0;border:1px solid rgba(255,107,53,0.2);">14Г2АФ</span>
+                        <span class="text-xs px-3 py-1 rounded-full font-medium font-mono" style="background:rgba(255,255,255,0.05);color:#94a3b8;border:1px solid rgba(255,255,255,0.08);">и др.</span>
+                    </div>
+                    <div class="mt-auto pt-6">
+                        <div class="flex items-center justify-between text-xs mb-2">
+                            <span class="font-semibold" style="color:#64748b;"><i class="fas fa-ruler-horizontal mr-1.5" style="color:#ff6b35;"></i>Толщина листа</span>
+                            <span class="font-mono font-semibold" style="color:#f1f5f9;">4–160 мм</span>
+                        </div>
+                        <div class="relative h-2 rounded-full overflow-hidden mb-1.5" style="background:rgba(255,255,255,0.06);">
+                            <div class="absolute inset-0 rounded-full" style="background:linear-gradient(90deg,#ff6b35,#fb923c);opacity:0.85;"></div>
+                        </div>
+                        <div class="flex justify-between text-[10px] font-mono mb-5" style="color:#64748b;">
+                            <span>4</span><span>40</span><span>80</span><span>120</span><span>160 мм</span>
+                        </div>
+                        <a href="#contacts" class="catalog-order-btn">Заказать лист <i class="fas fa-arrow-right" style="font-size:0.55rem;"></i></a>
                     </div>
                 </div>
+            </div>
 
-                <!-- Product 4 -->
-                <div class="product-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5" style="background:rgba(255,107,53,0.1);color:#ff6b35;font-size:1.5rem;">
-                        <i class="fas fa-flask"></i>
+            <!-- Thickness strip -->
+            <div class="mt-10 glass-card p-6 sm:p-8" data-aos="fade-up" data-aos-delay="150">
+                <div class="flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
+                    <div class="flex-1 w-full">
+                        <h3 class="text-base sm:text-lg font-bold mb-2 flex items-center gap-2" style="color:#f1f5f9;">
+                            <i class="fas fa-layer-group" style="color:#ff6b35;"></i>
+                            Листовой прокат — толщина от 4 до 160 мм
+                        </h3>
+                        <p class="text-sm leading-relaxed mb-4" style="color:#94a3b8;">
+                            Все позиции каталога производим и поставляем листами в диапазоне 4–160 мм —
+                            от партий от 100 кг до крупных поставок.
+                        </p>
+                        <div class="relative h-2.5 rounded-full overflow-hidden mb-1.5" style="background:rgba(255,255,255,0.06);">
+                            <div class="absolute inset-0 rounded-full" style="background:linear-gradient(90deg,#ff6b35,#fb923c);opacity:0.85;"></div>
+                        </div>
+                        <div class="flex justify-between text-[10px] font-mono" style="color:#64748b;">
+                            <span>4 мм</span><span>40 мм</span><span>80 мм</span><span>120 мм</span><span>160 мм</span>
+                        </div>
                     </div>
-                    <h3 class="text-lg font-bold mb-3" style="color:#f1f5f9;">Редкие марки</h3>
-                    <p class="text-sm leading-relaxed mb-4" style="color:#64748b;">
-                        Специальные и редкие марки стали, прецизионные сплавы, быстрорежущие стали под заказ.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:rgba(255,255,255,0.05);color:#94a3b8;border:1px solid rgba(255,255,255,0.06);">Р6М5</span>
-                        <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:rgba(255,255,255,0.05);color:#94a3b8;border:1px solid rgba(255,255,255,0.06);">ХВГ</span>
-                        <span class="text-xs px-3 py-1 rounded-full font-medium" style="background:rgba(255,255,255,0.05);color:#94a3b8;border:1px solid rgba(255,255,255,0.06);">38Х2МЮА</span>
+                    <div class="flex-shrink-0">
+                        <a href="#contacts" class="btn-cta text-white px-6 py-3 rounded-xl font-semibold text-sm no-underline inline-flex items-center gap-2 whitespace-nowrap">
+                            Запросить цены
+                            <i class="fas fa-arrow-right" style="font-size:0.75rem;"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1321,28 +1408,28 @@
         <div class="marquee-wrap">
             <div class="marquee-track">
                 <div class="flex items-center gap-3 text-sm font-mono font-medium" style="color:rgba(148,163,184,0.3);">
-                    <span>12Х18Н10Т</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
-                    <span>40Х</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
-                    <span>30ХГСА</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>Ст3сп</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>Ст3пс</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>09Г2</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
                     <span>09Г2С</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
-                    <span>08Х18Н10Т</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
-                    <span>Р6М5</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
-                    <span>65Г</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
-                    <span>38Х2МЮА</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>10Г2С1</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>15ХСНД</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
                     <span>10ХСНД</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
-                    <span>20Х23Н18</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>10ХСДП</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>40Х</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>45Х</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
                 </div>
                 <div class="flex items-center gap-3 text-sm font-mono font-medium" style="color:rgba(148,163,184,0.3);">
-                    <span>12Х18Н10Т</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
-                    <span>40Х</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
-                    <span>30ХГСА</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>Ст3сп</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>Ст3пс</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>09Г2</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
                     <span>09Г2С</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
-                    <span>08Х18Н10Т</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
-                    <span>Р6М5</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
-                    <span>65Г</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
-                    <span>38Х2МЮА</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>10Г2С1</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>15ХСНД</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
                     <span>10ХСНД</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
-                    <span>20Х23Н18</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>10ХСДП</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>40Х</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
+                    <span>45Х</span> <span class="w-1.5 h-1.5 rounded-full" style="background:rgba(255,107,53,0.3);"></span>
                 </div>
             </div>
         </div>
