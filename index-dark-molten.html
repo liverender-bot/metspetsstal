@@ -116,6 +116,53 @@
             transform: translateY(-2px);
         }
 
+        /* ===== THICKNESS SCALE SWITCHER ===== */
+        .scale-tab {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #94a3b8;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 0.3rem 0.7rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+        .scale-tab:hover { color: #e2e8f0; border-color: rgba(255,107,53,0.3); }
+        .scale-tab.active {
+            color: #ff6b35;
+            background: rgba(255,107,53,0.1);
+            border-color: rgba(255,107,53,0.35);
+        }
+        .scale-panel.hidden { display: none; }
+        .scale-runner {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+            pointer-events: none;
+        }
+        .scale-runner-knob {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #ff6b35;
+            border: 2.5px solid #fff;
+            box-shadow: 0 0 12px rgba(255,107,53,0.8);
+        }
+        .scale-runner-label {
+            position: absolute;
+            top: -22px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: #ff6b35;
+            white-space: nowrap;
+        }
+
         .form-input { width: 100%; padding: 0.875rem 1.25rem; border: 1.5px solid rgba(255,255,255,0.08); border-radius: 12px; font-family: inherit; font-size: 0.95rem; transition: all 0.3s; background: rgba(255,255,255,0.04); color: #e2e8f0; }
         .form-input:focus { outline: none; border-color: #ff6b35; box-shadow: 0 0 0 4px rgba(255,107,53,0.1); background: rgba(255,255,255,0.06); }
         .form-input::placeholder { color: rgba(148,163,184,0.5); }
@@ -1385,11 +1432,75 @@
                             Все позиции каталога производим и поставляем листами в диапазоне 4–160 мм —
                             от партий от 100 кг до крупных поставок.
                         </p>
-                        <div class="relative h-2.5 rounded-full overflow-hidden mb-1.5" style="background:rgba(255,255,255,0.06);">
-                            <div class="absolute inset-0 rounded-full" style="background:linear-gradient(90deg,#ff6b35,#fb923c);opacity:0.85;"></div>
+                        <div class="flex items-center gap-2 mb-4 flex-wrap">
+                            <span class="text-xs font-semibold" style="color:#64748b;">Шкала:</span>
+                            <button type="button" onclick="showScale('steps')" class="scale-tab active" id="tab-steps">Ступени</button>
+                            <button type="button" onclick="showScale('range')" class="scale-tab" id="tab-range">Диапазон</button>
+                            <button type="button" onclick="showScale('segments')" class="scale-tab" id="tab-segments">Сегменты</button>
                         </div>
-                        <div class="flex justify-between text-[10px] font-mono" style="color:#64748b;">
-                            <span>4 мм</span><span>40 мм</span><span>80 мм</span><span>120 мм</span><span>160 мм</span>
+
+                        <!-- Ступени листа -->
+                        <div id="scale-steps" class="scale-panel">
+                            <div class="flex items-end justify-between gap-2 mb-2" style="height:58px;">
+                                <div class="flex-1 flex flex-col items-center gap-1.5">
+                                    <div class="w-8 rounded-t-sm" style="height:10px;background:linear-gradient(180deg,#fb923c,#ff6b35);"></div>
+                                    <span class="text-[10px] font-mono" style="color:#94a3b8;">4</span>
+                                </div>
+                                <div class="flex-1 flex flex-col items-center gap-1.5">
+                                    <div class="w-8 rounded-t-sm" style="height:20px;background:linear-gradient(180deg,#fb923c,#ff6b35);"></div>
+                                    <span class="text-[10px] font-mono" style="color:#94a3b8;">20</span>
+                                </div>
+                                <div class="flex-1 flex flex-col items-center gap-1.5">
+                                    <div class="w-8 rounded-t-sm" style="height:32px;background:linear-gradient(180deg,#fb923c,#ff6b35);"></div>
+                                    <span class="text-[10px] font-mono" style="color:#94a3b8;">40</span>
+                                </div>
+                                <div class="flex-1 flex flex-col items-center gap-1.5">
+                                    <div class="w-8 rounded-t-sm" style="height:46px;background:linear-gradient(180deg,#fb923c,#ff6b35);"></div>
+                                    <span class="text-[10px] font-mono" style="color:#94a3b8;">80</span>
+                                </div>
+                                <div class="flex-1 flex flex-col items-center gap-1.5">
+                                    <div class="w-8 rounded-t-sm" style="height:58px;background:linear-gradient(180deg,#fb923c,#ff6b35);"></div>
+                                    <span class="text-[10px] font-mono" style="color:#94a3b8;">160 мм</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Живой диапазон -->
+                        <div id="scale-range" class="scale-panel hidden">
+                            <div class="relative h-4 mb-5">
+                                <div class="absolute inset-x-0 top-1/2 h-2.5 -translate-y-1/2 rounded-full overflow-hidden" style="background:rgba(255,255,255,0.06);">
+                                    <div class="absolute inset-0 rounded-full" style="background:linear-gradient(90deg,#ff6b35,#fb923c);opacity:0.85;"></div>
+                                </div>
+                                <div class="scale-runner">
+                                    <span class="scale-runner-label" id="runnerLabel">4 мм</span>
+                                    <div class="scale-runner-knob"></div>
+                                </div>
+                            </div>
+                            <div class="flex justify-between text-[10px] font-mono" style="color:#64748b;">
+                                <span>4 мм</span><span>40 мм</span><span>80 мм</span><span>120 мм</span><span>160 мм</span>
+                            </div>
+                        </div>
+
+                        <!-- Сегменты стана -->
+                        <div id="scale-segments" class="scale-panel hidden">
+                            <div class="flex items-end gap-2 mb-2" style="height:58px;">
+                                <div class="flex-1 flex flex-col items-center gap-1.5">
+                                    <div class="w-full rounded-t-md" style="height:26%;background:linear-gradient(180deg,#fb923c,#ff6b35);opacity:0.85;"></div>
+                                    <span class="text-[10px] font-mono whitespace-nowrap" style="color:#94a3b8;">4–20</span>
+                                </div>
+                                <div class="flex-1 flex flex-col items-center gap-1.5">
+                                    <div class="w-full rounded-t-md" style="height:46%;background:linear-gradient(180deg,#fb923c,#ff6b35);opacity:0.85;"></div>
+                                    <span class="text-[10px] font-mono whitespace-nowrap" style="color:#94a3b8;">20–60</span>
+                                </div>
+                                <div class="flex-1 flex flex-col items-center gap-1.5">
+                                    <div class="w-full rounded-t-md" style="height:72%;background:linear-gradient(180deg,#fb923c,#ff6b35);opacity:0.85;"></div>
+                                    <span class="text-[10px] font-mono whitespace-nowrap" style="color:#94a3b8;">60–100</span>
+                                </div>
+                                <div class="flex-1 flex flex-col items-center gap-1.5">
+                                    <div class="w-full rounded-t-md" style="height:100%;background:linear-gradient(180deg,#fb923c,#ff6b35);opacity:0.85;"></div>
+                                    <span class="text-[10px] font-mono whitespace-nowrap" style="color:#94a3b8;">100–160 мм</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="flex-shrink-0">
@@ -1821,6 +1932,33 @@
                 }
             });
         }
+
+        // Catalog thickness scale switcher
+        function showScale(name) {
+            document.querySelectorAll('.scale-panel').forEach(p => p.classList.add('hidden'));
+            document.getElementById('scale-' + name).classList.remove('hidden');
+            document.querySelectorAll('.scale-tab').forEach(b => b.classList.remove('active'));
+            document.getElementById('tab-' + name).classList.add('active');
+        }
+
+        // Living range runner (4-160 mm)
+        (function initScaleRunner() {
+            const runner = document.querySelector('.scale-runner');
+            const label = document.getElementById('runnerLabel');
+            if (!runner || !label) return;
+            const track = runner.parentElement;
+            let start = null;
+            const dur = 8000;
+            function step(ts) {
+                if (start === null) start = ts;
+                const t = ((ts - start) % dur) / dur;
+                const e = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+                runner.style.left = (e * (track.offsetWidth - runner.offsetWidth)) + 'px';
+                label.textContent = Math.round(4 + e * 156) + ' мм';
+                requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        })();
     </script>
 </body>
 </html>
